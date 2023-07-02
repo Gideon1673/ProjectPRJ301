@@ -56,6 +56,12 @@ CREATE TABLE [User] (
 ALTER TABLE [User] ADD CONSTRAINT pk_userID PRIMARY KEY(id);
 
 DROP TABLE [User];
+DROP TABLE [UserRole];
+
+DELETE FROM [User];
+DELETE FROM UserRole;
+DELETE FROM order_details;
+DELETE FROM order_items;
 
 CREATE TABLE Role (
 	role_id INT NOT NULL,

@@ -27,13 +27,15 @@ public class UserDAO extends DBConnect {
         User user = null;
         try {
             if (rs.next()) { // if there exists user with id
-                String username = rs.getString(2);
-                String email = rs.getString(3);
-                String phone = rs.getString(4);
-                String passwordHashed = rs.getString(5);
-                String city = rs.getString(6);
+                String fullname = rs.getString(2);
+                String username = rs.getString(3);
+                String email = rs.getString(4);
+                String phone = rs.getString(5);
+                String salt = rs.getString(6);
+                String passwordHashed = rs.getString(7);
+                String city = rs.getString(8);
 
-                user = new User(id, username, email, phone, passwordHashed, city);
+                user = new User(id, fullname, username, email, phone, salt, passwordHashed, city);
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -47,13 +49,15 @@ public class UserDAO extends DBConnect {
         User user = null;
         try {
             if (rs.next()) {
-                int id = rs.getInt(1);
-                String email = rs.getString(3);
-                String phone = rs.getString(4);
-                String passwordHashed = rs.getString(5);
-                String city = rs.getString(6);
+                int id  = rs.getInt(1);
+                String fullname = rs.getString(2);
+                String email = rs.getString(4);
+                String phone = rs.getString(5);
+                String salt = rs.getString(6);
+                String passwordHashed = rs.getString(7);
+                String city = rs.getString(8);
 
-                user = new User(id, username, email, phone, passwordHashed, city);
+                user = new User(id, fullname, username, email, phone, salt, passwordHashed, city);
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -67,17 +71,19 @@ public class UserDAO extends DBConnect {
      * @param user
      */
     public void addUser(User user) {
-        String sqlStatement = "INSERT INTO [User](id, username, email, phone, pwd_hashed, city) VALUES\n"
-                + "(?, ?, ?, ?, ?, ?);";
+        String sqlStatement = "INSERT INTO [User](id, fullName, username, email, phone, salt, pwd_hashed, city) VALUES\n"
+                + "(?, ?, ?, ?, ?, ?, ?, ?);";
         PreparedStatement pre;
         try {
             pre = connect.prepareStatement(sqlStatement);
-            pre.setInt(1, user.getId() + 1);
-            pre.setString(2, user.getUsername());
-            pre.setString(3, user.getEmail());
-            pre.setString(4, user.getPhone());
-            pre.setString(5, user.getPasswordHashed());
-            pre.setString(6, user.getCity());
+            pre.setInt(1, user.getId());
+            pre.setString(2, user.getFullname());
+            pre.setString(3, user.getUsername());
+            pre.setString(4, user.getEmail());
+            pre.setString(5, user.getPhone());
+            pre.setBytes(6, user.getSalted().getBytes());
+            pre.setBytes(7, user.getPasswordHashed().getBytes());
+            pre.setString(8, user.getCity());
 
             pre.executeUpdate();
         } catch (SQLException ex) {
@@ -156,15 +162,17 @@ public class UserDAO extends DBConnect {
         Vector<User> users = new Vector<>();
         try {
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String username = rs.getString(2);
-                String email = rs.getString(3);
-                String phone = rs.getString(4);
-                String pwd_hashed = rs.getString(5);
-                String city = rs.getString(6);
+                int id  = rs.getInt(1);
+                String fullname = rs.getString(2);
+                String username = rs.getString(3);
+                String email = rs.getString(4);
+                String phone = rs.getString(5);
+                String salt = rs.getString(6);
+                String passwordHashed = rs.getString(7);
+                String city = rs.getString(8);
 
-                User usr = new User(id, username, email, phone, pwd_hashed, city);
-                users.add(usr);
+                User user = new User(id, fullname, username, email, phone, salt, passwordHashed, city);
+                users.add(user);
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);

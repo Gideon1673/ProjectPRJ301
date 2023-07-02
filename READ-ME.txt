@@ -14,7 +14,7 @@ https://hackernoon.com/a-guide-to-hashing-how-to-keep-your-database-safe-4n1fq31
 https://www.baeldung.com/java-password-hashing
 
 ----- REDESIGN PHASE 1.0 -------
-1. Thực hiện add cột salt cho bảng USER để thực hiện mã hóa password lưu trên DB.
+1. Thực hiện add cột salt cho bảng USER để thực hiện mã hóa password lưu trên DB. -- Đã sửa User xong, giờ thực hiện sửa code
 - Đánh giá ảnh hưởng: chức năng Login, UserDAO, UserService
 
 ------------ TODO ------------

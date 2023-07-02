@@ -11,18 +11,38 @@ package entity;
 public class User {
     private int id;
     private String username;
+    private String fullname;
     private String email;
     private String phone;
     private String passwordHashed;
+    private String salted;
     private String city;
 
-    public User(int id, String username, String email, String phone, String passwordHashed, String city) {
+    public User(int id, String fullname, String username, String email, String phone, String passwordHashed, String salted, String city) {
         this.id = id;
         this.username = username;
+        this.fullname = fullname;
         this.email = email;
         this.phone = phone;
         this.passwordHashed = passwordHashed;
+        this.salted = salted;
         this.city = city;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public void setSalted(String salted) {
+        this.salted = salted;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public String getSalted() {
+        return salted;
     }
 
     public int getId() {
