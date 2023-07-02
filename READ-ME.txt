@@ -1,0 +1,49 @@
+ --- PROJECT BY DTS ---
+Sau bao ngay code lung tung :vv va luoi bieng nen rat ton thoi gian moi xong
+
+18/06/2023
+- Hien tai co the improve kha nhieu de trang web co nhieu chuc nang hon
+1. Ve USER table: Moi chi co username va email, thieu mat Fullname :v
+2. Ve Product: O trang product-details thi can anh, review, payment-method, color (noi chung la type) --> xem xet chinh lai database design cua PRODUCT
+Tuy nhien can chu y cai color kha kho, it nhat minh co the aware duoc la vi du color Pink co price dat hon color Black chang han --> Li tuong thi se phai co han mot bang moi de quyet dinh price, hoac mot cach design nao do khac ...
+- Ngoai ra Product cung can co muc Comment (luu du lieu comment). Viec chinh no se khien code design bi thay doi kha nhieu, nhung minh se lam sau.
+3. Register and Password: Password chua duoc hash (se lam sau). Tuy nhien se phai chinh lai field PasswordHashed cho dai ra vi neu dung SHA-512 thi se khong du cho luu
+
+
+https://hackernoon.com/a-guide-to-hashing-how-to-keep-your-database-safe-4n1fq31nz
+https://www.baeldung.com/java-password-hashing
+
+----- REDESIGN PHASE 1.0 -------
+1. Thực hiện add cột salt cho bảng USER để thực hiện mã hóa password lưu trên DB.
+- Đánh giá ảnh hưởng: chức năng Login, UserDAO, UserService
+
+------------ TODO ------------
+24/6/2023: Mai lam not cai Remove trong Cart.jsp nha --> Xong
+25/6/2023: Su dung <jsp:include> để sử dụng chung header và footer trong các trang JSP. Lí do vì bên trên đó có các nút bấm + đọc giá trị cart. Làm từng cái sẽ rất bất tiện --> xong
+26/6/2023: Làm chức năng Search ở các trang. (khó vì chưa biết design như nào)
+- Add hết entity, DAO
+- Xem xét sửa lại file update_product.jsp phần Percent_tage discount bởi vì sửa trực tiếp percent không hợp lí. Nên sửa thành chọn từ danh sách các Discount có sẵn (kéo theo sửa hàm updateProduct ở DAOproduct) --> đã sửa, thực ra Percentage_discount cũ chỉ là cái tên thôi còn ở controller mình vẫn treat nó như ID. --> nếu vậy phải update nó thành <select> để sau chọn các loại discount cho sản phẩm
+- Thực hiện validate ở các file addProduct, updateProduct
+- Xem xét update lại kiểu dữ liệu bảng Product phần Description từ VARCHAR --> NVARCHAR để có thể gõ được tiếng Việt.
+27/6/2023:
+- Làm update Product --> Xong
+- Làm display manu (Xong), display Users (xong)
+- Làm insert Discount, Manu, 
+28/6/2023:
+- Bảng USER xem xét add constraint UNIQUE vào các field của nó.
+- Bảng order_details: Xem xét việc xóa entry trong bảng này thì xóa hết cả các bảng còn lại --> khi đó implement code đấy ở SQL (dùng Proc như thầy Long dạy hay là code trên Java)
+29/6/2023:
+- Đặc biệt check kĩ phần add OrderItems hàm buyItem() do chưa xử lí nếu add vào giỏ hàng số lượng item > số lượng cửa hàng có
+- Sửa cart.jsp: Chưa chính price theo giá khuyến mại. --> xong
+- Chỉnh lại Login phân quyền cho admin. --> Xong
+- Mã hóa Password cho user
+
+------------- EXP ----------------
+1. Button act like a <a> tag
+<button onclick="location.href='category?service=listAll'" type="button" class="btn btn-block btn-light">Continue Shopping</button>
+Khi làm cách này thì tương đương (theo như mình test là như thế)
+<a href="category?service=listAll">Continue Shopping</a>
+Đặc biệt là nó sẽ có appearance như Button (ô vuông) nhưng khi di chuột vào lại không hiện preview link góc trái bên dưới màn hình (có thể là security risk khi mà trick người dùng ấn vào link)
+2. Nguyên tắc: Thêm bên một trước, bên nhiều sau
+3. Liên quan đến RequestDispatcher và SendRedirect:
+https://stackoverflow.com/questions/2123514/java-lang-illegalstateexception-cannot-forward-sendredirect-create-session
