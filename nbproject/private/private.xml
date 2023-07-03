@@ -3,8 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/FPT-Semester-4/PRJ301/Project-Final/src/java/controller/LoginServlet.java</file>
+            <file>file:/D:/FPT-Semester-4/PRJ301/Project-Final/src/java/entity/User.java</file>
             <file>file:/D:/FPT-Semester-4/PRJ301/Project-Final/src/java/service/ProductService.java</file>
             <file>file:/D:/FPT-Semester-4/PRJ301/Project-Final/src/java/service/UserService.java</file>
+            <file>file:/D:/FPT-Semester-4/PRJ301/Project-Final/src/java/dao/UserDAO.java</file>
+            <file>file:/D:/FPT-Semester-4/PRJ301/Project-Final/src/java/filter/AdminFilter.java</file>
         </group>
     </open-files>
 </project-private>

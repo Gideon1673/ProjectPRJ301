@@ -122,11 +122,11 @@ INSERT INTO [User](id, username, email, phone, pwd_hashed, city) VALUES
 INSERT INTO UserRole(role_id, [user_id]) VALUES
 --(1, 1),
 --(2, 2),
-(2, 3);
+(2, 1);
 
 SELECT * FROM [User];
 SELECT * FROM [Role];
---SELECT * FROM [UserRole];
+SELECT * FROM [UserRole];
 SELECT * FROM Manufacturer;
 SELECT * FROM product_category;
 SELECT * FROM Discount;

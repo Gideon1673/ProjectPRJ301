@@ -7,7 +7,9 @@ package dao;
 import entity.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,8 +33,8 @@ public class UserDAO extends DBConnect {
                 String username = rs.getString(3);
                 String email = rs.getString(4);
                 String phone = rs.getString(5);
-                String salt = rs.getString(6);
-                String passwordHashed = rs.getString(7);
+                byte[] salt = rs.getBytes(6);
+                byte[] passwordHashed = rs.getBytes(7);
                 String city = rs.getString(8);
 
                 user = new User(id, fullname, username, email, phone, salt, passwordHashed, city);
@@ -49,12 +51,12 @@ public class UserDAO extends DBConnect {
         User user = null;
         try {
             if (rs.next()) {
-                int id  = rs.getInt(1);
+                int id = rs.getInt(1);
                 String fullname = rs.getString(2);
                 String email = rs.getString(4);
                 String phone = rs.getString(5);
-                String salt = rs.getString(6);
-                String passwordHashed = rs.getString(7);
+                byte[] salt = rs.getBytes(6);
+                byte[] passwordHashed = rs.getBytes(7);
                 String city = rs.getString(8);
 
                 user = new User(id, fullname, username, email, phone, salt, passwordHashed, city);
@@ -81,12 +83,15 @@ public class UserDAO extends DBConnect {
             pre.setString(3, user.getUsername());
             pre.setString(4, user.getEmail());
             pre.setString(5, user.getPhone());
-            pre.setBytes(6, user.getSalted().getBytes());
-            pre.setBytes(7, user.getPasswordHashed().getBytes());
+            pre.setBytes(6, user.getSalted());
+            System.out.println(Arrays.toString(user.getSalted()));
+            pre.setBytes(7, user.getPasswordHashed());
             pre.setString(8, user.getCity());
 
             pre.executeUpdate();
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            System.out.println(ex.getCause());
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -112,6 +117,7 @@ public class UserDAO extends DBConnect {
     }
 
     /**
+     * DEPRECATED
      *
      * @param username
      * @param password
@@ -135,6 +141,48 @@ public class UserDAO extends DBConnect {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return success;
+    }
+
+    /**
+     * Get salt of account by username
+     *
+     * @param username
+     * @return salt String, or null if error
+     */
+    public byte[] getUserSalt(String username) {
+        String sqlStatement = "SELECT salt FROM [User] WHERE username LIKE ?;";
+        try {
+            PreparedStatement pre = connect.prepareStatement(sqlStatement);
+
+            pre.setString(1, username);
+
+            ResultSet rs = pre.executeQuery();
+
+            if (rs.next()) {
+                return rs.getBytes(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public byte[] getHashedPassword(String username) {
+        String sqlStatement = "SELECT pwd_hashed FROM [User] WHERE username LIKE ?;";
+        try {
+            PreparedStatement pre = connect.prepareStatement(sqlStatement);
+
+            pre.setString(1, username);
+
+            ResultSet rs = pre.executeQuery();
+
+            if (rs.next()) {
+                return rs.getBytes(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     /**
@@ -162,13 +210,13 @@ public class UserDAO extends DBConnect {
         Vector<User> users = new Vector<>();
         try {
             while (rs.next()) {
-                int id  = rs.getInt(1);
+                int id = rs.getInt(1);
                 String fullname = rs.getString(2);
                 String username = rs.getString(3);
                 String email = rs.getString(4);
                 String phone = rs.getString(5);
-                String salt = rs.getString(6);
-                String passwordHashed = rs.getString(7);
+                byte[] salt = rs.getBytes(6);
+                byte[] passwordHashed = rs.getBytes(7);
                 String city = rs.getString(8);
 
                 User user = new User(id, fullname, username, email, phone, salt, passwordHashed, city);
@@ -182,6 +230,7 @@ public class UserDAO extends DBConnect {
 
     /**
      * Get user role corresponding to username.
+     *
      * @param username
      * @return role id. -1 if there is no username in DB
      */
@@ -189,22 +238,37 @@ public class UserDAO extends DBConnect {
         String sqlStatement = "SELECT b.role_id FROM \n"
                 + "[User] a JOIN UserRole b ON a.id = b.user_id \n"
                 + "WHERE username LIKE ?;";
-        
+
         try {
             PreparedStatement pre = connect.prepareStatement(sqlStatement);
-            
+
             pre.setString(1, username);
-            
+
             ResultSet rs = pre.executeQuery();
-            
-            if(rs.next()){
+
+            if (rs.next()) {
                 return rs.getInt(1);
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return -1;
-        
+
     }
+
+//    public static void main(String[] args) {
+//        UserDAO dao = new UserDAO();
+//        ResultSet res = dao.getData("select * from [User] where 1<0");
+//        ResultSetMetaData rsmd;
+//        try {
+//            rsmd = res.getMetaData();
+//
+//            System.out.println(rsmd.getColumnType(1));
+//            System.out.println(rsmd.getColumnLabel(1));
+//            System.out.println(rsmd.getColumnDisplaySize(1));
+//        } catch (SQLException ex) {
+//            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 }

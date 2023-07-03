@@ -14,11 +14,11 @@ public class User {
     private String fullname;
     private String email;
     private String phone;
-    private String passwordHashed;
-    private String salted;
+    private byte[] passwordHashed;
+    private byte[] salted;
     private String city;
 
-    public User(int id, String fullname, String username, String email, String phone, String passwordHashed, String salted, String city) {
+    public User(int id, String fullname, String username, String email, String phone, byte[] salted, byte[] passwordHashed, String city) {
         this.id = id;
         this.username = username;
         this.fullname = fullname;
@@ -33,7 +33,7 @@ public class User {
         this.fullname = fullname;
     }
 
-    public void setSalted(String salted) {
+    public void setSalted(byte[] salted) {
         this.salted = salted;
     }
 
@@ -41,7 +41,7 @@ public class User {
         return fullname;
     }
 
-    public String getSalted() {
+    public byte[] getSalted() {
         return salted;
     }
 
@@ -77,11 +77,11 @@ public class User {
         this.phone = phone;
     }
 
-    public String getPasswordHashed() {
+    public byte[] getPasswordHashed() {
         return passwordHashed;
     }
 
-    public void setPasswordHashed(String passwordHashed) {
+    public void setPasswordHashed(byte[] passwordHashed) {
         this.passwordHashed = passwordHashed;
     }
 

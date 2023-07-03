@@ -11,6 +11,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.sql.ResultSet;
+import java.util.Arrays;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,10 +26,23 @@ public class UserService {
 
     /**
      *
-     * @return
+     * @return true if username and password is correct
      */
     public boolean userLogin(String username, String password) {
-        return userDao.validate(username, password);
+        if (!userDao.isUsernameExist(username)) { // if username does not exist --> login failed
+            return false;
+        } else {
+            byte[] salted = userDao.getUserSalt(username);
+            System.out.println("salted: " + Arrays.toString(salted));
+
+            byte[] hashedPassword = hashingPassword(password, salted);
+            byte[] realHashed = userDao.getHashedPassword(username);
+
+            System.out.println("hashed1: " + Arrays.toString(hashedPassword));
+            System.out.println("hashed2: " + Arrays.toString(realHashed));
+
+            return Arrays.equals(realHashed, hashedPassword);
+        }
     }
 
     /**
@@ -58,6 +72,7 @@ public class UserService {
 
     /**
      * Hashing a password
+     *
      * @param password
      * @param salt
      * @return hashed password. Or null if SHA-512 is not supported
@@ -68,7 +83,7 @@ public class UserService {
             md = MessageDigest.getInstance("SHA-512");
             md.update(salt);
             byte[] hashedPassword = md.digest(password.getBytes(StandardCharsets.UTF_8));
-            System.out.println("Password after hash: " + hashedPassword);
+            System.out.println("Password after hash: " + Arrays.toString(hashedPassword));
             return hashedPassword;
         } catch (NoSuchAlgorithmException ex) {
             System.out.println(ex.getMessage());
@@ -80,6 +95,10 @@ public class UserService {
     /**
      * Register a user.
      *
+     * @param username
+     * @param email
+     * @param password
+     * @param retype_password
      * @return true if registered successfully, false otherwise
      */
     public boolean userRegister(String username, String email, String password, String retype_password) throws Exception {
@@ -91,16 +110,18 @@ public class UserService {
         if (userDao.isUsernameExist(username)) {
             throw new Exception("username already existed");
         }
-        
+
         System.out.println("USERNAME: " + username);
 
         // Generate salt
         byte[] salt = generateSalt();
-        System.out.println(salt.toString());
-        
-        byte[] hashedPassword = hashingPassword(password, salt);
+        System.out.println(Arrays.toString(salt));
+        System.out.println("Salt size: " + salt.length);
 
-        User newUser = new User(userDao.getLastID() + 1, null, username, email, null, salt.toString(), hashedPassword.toString(), null);
+        byte[] hashedPassword = hashingPassword(password, salt);
+        System.out.println("Password size: " + hashedPassword.length);
+
+        User newUser = new User(userDao.getLastID() + 1, null, username, email, null, salt, hashedPassword, null);
         userDao.addUser(newUser);
         return true;
     }
@@ -124,4 +145,6 @@ public class UserService {
     public int getUserRole(String username) {
         return userDao.getUserRole(username);
     }
+
+    
 }
