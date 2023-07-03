@@ -168,7 +168,7 @@ footer a {
                     <h2 class="text-center"><%= product.getProductName() %></h2>
                     <p class="price"><%= pService.getFinalPrice(product.getProductID()) %> $</p>
                     <p class="price_discounted"><%= product.getPrice() %> $</p>
-                    <form method="get" action="cart.html">
+                    <form method="POST" action="cart">
 <!--                        <div class="form-group">
                             <label for="colors">Color</label>
                             <select class="custom-select" id="colors">
@@ -194,9 +194,12 @@ footer a {
                                 </div>
                             </div>
                         </div>
-                        <a href="cart?service=add&id=<%= product.getProductID() %>" class="btn btn-success btn-lg btn-block text-uppercase">
+                        <input type="hidden" name="service" value="add">
+                        <input type="hidden" name="id" value="<%= product.getProductID() %>">
+                        
+                        <input type="submit" value="Add To Cart" class="btn btn-success btn-lg btn-block text-uppercase">
                             <i class="fa fa-shopping-cart"></i> Add To Cart
-                        </a>
+                        </input>
                     </form>
                     <div class="product_rassurance">
                         <ul class="list-inline">
@@ -357,23 +360,36 @@ footer a {
     </div>
 </div>
 <script type="text/javascript">
+    // Wait for the page to finish loading before executing the code
+        $(document).ready(function () {
+            // Declare and initialize a variable to store the quantity
+            var quantity = 1;
 
-    $(document).ready(function(){
-        var quantity = 1;
+            // Attach a click event listener to the plus button
+            $('.quantity-right-plus').click(function (e) {
+                // Prevent the default action of the click event
+                e.preventDefault();
+                // Get the current value of the quantity input field and parse it as an integer
+                var quantity = parseInt($('#quantity').val());
+                // Increase the value of the quantity input field by 1
+                $('#quantity').val(quantity + 1);
+            });
 
-        $('.quantity-right-plus').click(function(e){
-            e.preventDefault();
-            var quantity = parseInt($('#quantity').val());
-            $('#quantity').val(quantity + 1);
+            // Attach a click event listener to the minus button
+            $('.quantity-left-minus').click(function (e) {
+                // Prevent the default action of the click event
+                e.preventDefault();
+                // Get the current value of the quantity input field and parse it as an integer
+                var quantity = parseInt($('#quantity').val());
+                // Check if the current quantity is greater than 1
+                if (quantity > 1) {
+                    // Decrease the value of the quantity input field by 1
+                    $('#quantity').val(quantity - 1);
+                }
+            });
         });
-
-        $('.quantity-left-minus').click(function(e){
-            e.preventDefault();
-            var quantity = parseInt($('#quantity').val());
-            if(quantity > 1){
-                $('#quantity').val(quantity - 1);
-            }
-        });
+    
 </script>
+<!-- <script src="./js/productDetails.js"></script> -->
 </body>
 </html>

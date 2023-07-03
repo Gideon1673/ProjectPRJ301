@@ -63,12 +63,21 @@ public class CartController extends HttpServlet {
                     break;
                 case "add":
                     int productID = Integer.valueOf(request.getParameter("id"));
+                    // specific handle for quantity from produtc_details
+                    String quant = request.getParameter("quantity");
+                    int addNumber;
+                    if(quant == null) { // add service sent from catergory
+                        addNumber = 1;
+                    } else {
+                        addNumber = Integer.valueOf(quant);
+                    }
+                    
                     int quantity = 0;
                     // Get quantity of product if it already in cart
                     if (cart.get(productID) != null) {
                         quantity = cart.get(productID);
                     }
-                    cart.put(productID, quantity + 1);
+                    cart.put(productID, quantity + addNumber);
                     response.sendRedirect("category");
                     break;
                 case "remove":

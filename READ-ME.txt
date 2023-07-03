@@ -34,9 +34,10 @@ https://www.baeldung.com/java-password-hashing
 - Bảng order_details: Xem xét việc xóa entry trong bảng này thì xóa hết cả các bảng còn lại --> khi đó implement code đấy ở SQL (dùng Proc như thầy Long dạy hay là code trên Java)
 29/6/2023:
 - Đặc biệt check kĩ phần add OrderItems hàm buyItem() do chưa xử lí nếu add vào giỏ hàng số lượng item > số lượng cửa hàng có
-- Sửa cart.jsp: Chưa chính price theo giá khuyến mại. --> xong
+- Sửa cart.jsp: Chưa tính price theo giá khuyến mại. --> xong
 - Chỉnh lại Login phân quyền cho admin. --> Xong
-- Mã hóa Password cho user
+- Mã hóa Password cho user --> xong
+- Thêm tính năng + - button cho product_details --> xong
 
 ------------- EXP ----------------
 1. Button act like a <a> tag
