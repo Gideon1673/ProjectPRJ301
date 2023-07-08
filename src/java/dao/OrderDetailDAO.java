@@ -44,32 +44,32 @@ public class OrderDetailDAO extends DBConnect {
                 + "           (?, ?, ?, ?, ?)";
         try {
             PreparedStatement pre = connect.prepareStatement(sqlStatement);
-            
+
             pre.setInt(1, order.getOrderID());
             pre.setInt(2, order.getUserID());
             pre.setInt(3, order.getOrderStatus());
             pre.setString(4, order.getOrderDate());
             pre.setDouble(5, order.getTotal());
-            
+
             n = pre.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(OrderDetailDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return n;
     }
-    
+
     public Vector<OrderDetail> getAllOrders() {
         String sqlStatement = "SELECT * FROM order_details;";
         ResultSet rs = getData(sqlStatement);
         Vector<OrderDetail> orders = new Vector<>();
         try {
-            while(rs.next()){
+            while (rs.next()) {
                 int oID = rs.getInt(1);
                 int uID = rs.getInt(2);
                 int status = rs.getInt(3);
                 String date = rs.getString(4);
                 double total = rs.getDouble(5);
-                
+
                 OrderDetail o = new OrderDetail(oID, uID, status, date, total);
                 orders.add(o);
             }
@@ -77,5 +77,52 @@ public class OrderDetailDAO extends DBConnect {
             Logger.getLogger(OrderDetailDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return orders;
+    }
+
+    /**
+     * Get OrderDetail object by ID
+     *
+     * @param oID
+     * @return OrderDetail object, or null if there is no oID in the DB
+     */
+    public OrderDetail getOrderByID(int oID) {
+        String sql = "SELECT order_id, user_id, order_status, order_date, total FROM order_details\n"
+                + "WHERE order_id = ?;";
+
+        OrderDetail o = null;
+
+        try {
+            PreparedStatement pre = connect.prepareStatement(sql);
+            pre.setInt(1, oID);
+            ResultSet rs = pre.executeQuery();
+            if (rs.next()) {
+                int uID = rs.getInt(2);
+                int oStatus = rs.getInt(3);
+                String oDate = rs.getString(4);
+                double total = rs.getDouble(5);
+
+                o = new OrderDetail(oID, uID, oStatus, oDate, total);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDetailDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return o;
+    }
+
+    public int deleteOrderDetail(int oID) {
+        String sql = "DELETE FROM [order_details]\n"
+                + "      WHERE order_id = ?;";
+        int n = 0;
+        try {
+            PreparedStatement pre = connect.prepareStatement(sql);
+            pre.setInt(1, oID);
+
+            n = pre.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("Error when deleting oID = " + oID + ". Exception message: " + ex.getMessage());
+            Logger.getLogger(OrderDetailDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return n;
     }
 }

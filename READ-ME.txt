@@ -48,6 +48,8 @@ https://www.baeldung.com/java-password-hashing
 - Đã add constraint DEFAULT cho img_path, vì vậy hàm addProduct() sẽ không bị ảnh hưởng nếu không insert cột img_path (nếu cần sửa thì sau này modify lại là được)
 - Đã thêm chức năng img_path, hiện ảnh cho product --> Xong. Lưu ý, admin phải tải ảnh về server trước, sau đó thực hiện update img_path manually cho product
 - Xem xét thêm chức năng tải ảnh trực tiếp lên server
+- Thêm chức năng xóa order: Khi xóa order sẽ xóa thông in ở bảng orderDetails + orderItems --> xong
+- Thêm chức năng update status cho order
 
 ------------- EXP ----------------
 1. Button act like a <a> tag

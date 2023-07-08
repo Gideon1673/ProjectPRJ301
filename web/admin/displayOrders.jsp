@@ -37,7 +37,7 @@
                 <td><%= o.getOrderStatus() %></td>
                 <td><%= o.getOrderDate() %></td>
                 <td><%= o.getTotal() %></td>
-                <td><a href="#">Delete</a></td>
+                <td><a href="AdminOrder?service=delete&oID=<%= o.getOrderID() %>">Delete</a></td>
             </tr>
             <% } %>
 

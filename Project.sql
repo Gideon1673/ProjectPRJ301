@@ -134,6 +134,12 @@ SELECT * FROM Product;
 SELECT * FROM order_details;
 SELECT * FROM order_items;
 
+--SELECT order_id, user_id, order_status, order_date, total FROM order_details
+--WHERE order_id = 1;
+
+--DELETE FROM [order_details]
+--      WHERE order_id = 1;
+
 
 --SELECT id FROM [User] WHERE username = 'admin    ' AND pwd_hashed = '123456   ';
 --SELECT * FROM [User] WHERE id = ?;

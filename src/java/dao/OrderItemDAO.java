@@ -29,9 +29,9 @@ public class OrderItemDAO extends DBConnect {
                 + "           ,[product_id]\n"
                 + "           ,[quantity])\n"
                 + "     VALUES (?, ?, ?, ?)";
-        
+
         int n = 0;
-        
+
         PreparedStatement pre;
         try {
             pre = connect.prepareStatement(sqlStatement);
@@ -39,7 +39,7 @@ public class OrderItemDAO extends DBConnect {
             pre.setInt(2, o.getOrderID());
             pre.setInt(3, o.getProductID());
             pre.setInt(4, o.getQuantity());
-            
+
             n = pre.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(OrderItemDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -57,6 +57,27 @@ public class OrderItemDAO extends DBConnect {
                 n = rs.getInt(1);
             }
         } catch (SQLException ex) {
+            Logger.getLogger(OrderItemDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return n;
+    }
+
+    /**
+     * Delete all order items with orderID
+     *
+     * @param orderID orderID of order item
+     * @return number of order item deleted
+     */
+    public int deleteOrderItems(int orderID) {
+        String sql = "DELETE FROM order_items\n"
+                + "      WHERE order_id = ?;";
+        int n = 0;
+        try {
+            PreparedStatement pre = connect.prepareStatement(sql);
+            pre.setInt(1, orderID);
+            n = pre.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("Delete order_item error, exception message: " + ex.getMessage());
             Logger.getLogger(OrderItemDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return n;

@@ -12,12 +12,9 @@ import entity.OrderItem;
 import entity.Product;
 import java.util.HashMap;
 import entity.User;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Map;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -91,6 +88,21 @@ public class OrderService {
 
     public Vector<OrderDetail> getAllOrders() {
         return orderDao.getAllOrders();
+    }
+    
+    public OrderDetail getOrderByID(int oID) {
+        return orderDao.getOrderByID(oID);
+    }
+    
+    /**
+     * Delete order_details with orderID, and all order_items corresponding to that order_details
+     * @param orderID orderID of order you want to delete
+     */
+    public void deleteOrder(int orderID) {
+        // Delete order_items first
+        orItemDao.deleteOrderItems(orderID);
+        // Then delete order_details
+        orderDao.deleteOrderDetail(orderID);
     }
 
 }
