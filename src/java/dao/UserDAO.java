@@ -229,12 +229,13 @@ public class UserDAO extends DBConnect {
     }
 
     /**
-     * Get user role corresponding to username.
+     * Get user role's id corresponding to username.
      *
      * @param username
      * @return role id. -1 if there is no username in DB
      */
     public int getUserRole(String username) {
+        System.out.println("Username: " + username);
         String sqlStatement = "SELECT b.role_id FROM \n"
                 + "[User] a JOIN UserRole b ON a.id = b.user_id \n"
                 + "WHERE username LIKE ?;";
@@ -254,7 +255,34 @@ public class UserDAO extends DBConnect {
         }
 
         return -1;
+    }
 
+    /**
+     *
+     * @param user
+     * @return
+     */
+    public int updateUser(User user) {
+        String sql = "UPDATE [User]\n"
+                + "   SET [fullName] = ?,[username] = ?,[email] = ?,[phone] = ?,[city] = ?\n"
+                + " WHERE id = ?;";
+        int n = 0;
+        
+        try {
+            PreparedStatement pre = connect.prepareStatement(sql);
+            pre.setString(1, user.getFullname());
+            pre.setString(2, user.getUsername());
+            pre.setString(3, user.getEmail());
+            pre.setString(4, user.getPhone());
+            pre.setString(5, user.getCity());
+            pre.setInt(6, user.getId());
+            
+            n = pre.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("Update user error: " + ex.getMessage());
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return n;
     }
 
 //    public static void main(String[] args) {

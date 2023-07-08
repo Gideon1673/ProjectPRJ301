@@ -196,3 +196,6 @@ SELECT a.product_id, b.*
 FROM Product a JOIN Discount b ON a.discount_id = b.id;
 
 SELECT * FROM Product WHERE product_name LIKE 'Neo 10';
+
+SELECT b.role_id
+FROM [User] a JOIN UserRole b ON a.id = b.user_id;

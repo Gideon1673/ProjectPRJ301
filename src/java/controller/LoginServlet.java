@@ -86,7 +86,8 @@ public class LoginServlet extends HttpServlet {
                     boolean status = service.userLogin(username, password);
                     if (status) { // Username and password are correct
                         session.setAttribute("username", username);
-                        int roleID = service.getUserRole(username);
+//                        System.out.println("Current logged in user is: " + username);
+                        int roleID = service.getUserRoleID(username);
                         if (roleID == 2) {
                             session.setAttribute("isAdmin", true);
                         } else {

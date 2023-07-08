@@ -38,6 +38,11 @@ https://www.baeldung.com/java-password-hashing
 - Chỉnh lại Login phân quyền cho admin. --> Xong
 - Mã hóa Password cho user --> xong
 - Thêm tính năng + - button cho product_details --> xong
+3/7/2023
+- Thêm ảnh vào trang chủ (add hard-code trực tiếp là được, miễn ảnh đẹp, phù hợp kích thước). Trang sản phẩm (yêu cầu design lại DB, dùng đường dẫn để link đến ảnh. Gồm 1 ảnh preview + ảnh to details của sản phẩm)
+- Thêm User management vào admin --> fix xong displayUsers, update user
+- Thêm nút back ở phần admin
+- Làm chức năng quên mật khẩu
 
 ------------- EXP ----------------
 1. Button act like a <a> tag
@@ -48,3 +53,6 @@ Khi làm cách này thì tương đương (theo như mình test là như thế)
 2. Nguyên tắc: Thêm bên một trước, bên nhiều sau
 3. Liên quan đến RequestDispatcher và SendRedirect:
 https://stackoverflow.com/questions/2123514/java-lang-illegalstateexception-cannot-forward-sendredirect-create-session
+4. Làm việc với form, các kỹ thuật sending form: Có thể sử dụng JS, AJAX, JQuery (thư viện của JS, thực chất cũng là JS cả thôi)
+https://developer.mozilla.org/en-US/docs/Learn/Forms/Sending_and_retrieving_form_data
+https://developer.mozilla.org/en-US/docs/Learn/Forms/Sending_forms_through_JavaScript 

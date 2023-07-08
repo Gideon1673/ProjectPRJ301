@@ -108,19 +108,19 @@
       <!-- Swiper-->
       <section class="section swiper-container swiper-slider swiper-slider-corporate swiper-pagination-style-2" data-loop="true" data-autoplay="5000" data-simulate-touch="true" data-nav="false" data-direction="vertical">
         <div class="swiper-wrapper text-left">
-          <div class="swiper-slide context-dark" data-slide-bg="images/slider-4-slide-1-1920x678.jpg">
+          <div class="swiper-slide context-dark" data-slide-bg="dtsImages/Asahidake-Daisetsuzan-National-Park-Hokkaido-Japan-hike-1920x678.jpg">
             <div class="swiper-slide-caption section-md">
               <div class="container">
                 <div class="row">
                   <div class="col-md-10">
-                    <h6 class="text-uppercase" data-caption-animate="fadeInRight" data-caption-delay="0">Enjoy the Best Destinations with Our Travel Agency</h6>
-                    <h2 class="oh font-weight-light" data-caption-animate="slideInUp" data-caption-delay="100"><span>Explore</span><span class="font-weight-bold"> The World</span></h2><a class="button button-default-outline button-ujarak" href="#" data-caption-animate="fadeInLeft" data-caption-delay="0">Get in touch</a>
+                    <h6 class="text-uppercase" data-caption-animate="fadeInRight" data-caption-delay="0">Enjoy the Best Life with Our Technology Products</h6>
+                    <h2 class="oh font-weight-light" data-caption-animate="slideInUp" data-caption-delay="100"><span>Explore</span><span class="font-weight-bold"> The World</span></h2><a class="button button-default-outline button-ujarak" href="category" data-caption-animate="fadeInLeft" data-caption-delay="0">Get in touch</a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="swiper-slide context-dark" data-slide-bg="images/slider-4-slide-2-1920x678.jpg">
+          <div class="swiper-slide context-dark" data-slide-bg="dtsImages/mauritius1-1920x678.jpg">
             <div class="swiper-slide-caption section-md">
               <div class="container">
                 <div class="row">
@@ -132,7 +132,7 @@
               </div>
             </div>
           </div>
-          <div class="swiper-slide context-dark" data-slide-bg="images/slider-4-slide-3-1920x678.jpg">
+          <div class="swiper-slide context-dark" data-slide-bg="dtsImages/lamu1-1920x678-1.jpg">
             <div class="swiper-slide-caption section-md">
               <div class="container">
                 <div class="row">
@@ -156,22 +156,22 @@
               <div class="row justify-content-center">
                 <div class="col-md-4 wow fadeInDown col-9" data-wow-delay=".2s">
                   <ul class="list-marked-2 box-categories-list">
-                    <li><a href="#"><img src="images/cta-1-368x420.jpg" alt="" width="368" height="420"/></a>
+                    <li><a href="#"><img src="dtsImages/cta-1-368x420.jpg" alt="" width="368" height="420"/></a>
                       <h5 class="box-categories-title">Balloon Flights</h5>
                     </li>
                   </ul>
                 </div>
                 <div class="col-md-4 wow fadeInDown col-9" data-wow-delay=".2s">
                   <ul class="list-marked-2 box-categories-list">
-                    <li><a href="#"><img src="images/cta-2-368x420.jpg" alt="" width="368" height="420"/></a>
+                    <li><a href="#"><img src="dtsImages/cta-2-368x420.jpg" alt="" width="368" height="420"/></a>
                       <h5 class="box-categories-title">Mountain Holiday</h5>
                     </li>
                   </ul>
                 </div>
                 <div class="col-md-4 wow fadeInDown col-9" data-wow-delay=".2s">
                   <ul class="list-marked-2 box-categories-list">
-                    <li><a href="#"><img src="images/cta-3-368x420.jpg" alt="" width="368" height="420"/></a>
-                      <h5 class="box-categories-title">Beach Holidays</h5>
+                    <li><a href="#"><img src="dtsImages/cta-3-368x420.jpg" alt="" width="368" height="420"/></a>
+                      <h5 class="box-categories-title">Forest Holidays</h5>
                     </li>
                   </ul>
                 </div>
@@ -182,7 +182,7 @@
         </div>
       </section>
       <!-- Discover New Horizons-->
-      <section class="section section-sm section-first bg-default text-md-left">
+<!--      <section class="section section-sm section-first bg-default text-md-left">
         <div class="container">
           <div class="row row-50 align-items-center justify-content-center justify-content-xl-between">
             <div class="col-lg-6 text-center wow fadeInUp"><img src="images/index-3-556x382.jpg" alt="" width="556" height="382"/>
@@ -190,15 +190,15 @@
             <div class="col-lg-6 wow fadeInRight" data-wow-delay=".1s">
               <div class="box-width-lg-470">
                 <h3>Discover New Horizons</h3>
-                <!-- Bootstrap tabs-->
+                 Bootstrap tabs
                 <div class="tabs-custom tabs-horizontal tabs-line tabs-line-big tabs-line-style-2 text-center text-md-left" id="tabs-7">
-                  <!-- Nav tabs-->
+                   Nav tabs
                   <ul class="nav nav-tabs">
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="#tabs-7-1" data-toggle="tab">About us</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-7-2" data-toggle="tab">Why choose us</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-7-3" data-toggle="tab">Our mission</a></li>
                   </ul>
-                  <!-- Tab panes-->
+                   Tab panes
                   <div class="tab-content">
                     <div class="tab-pane fade show active" id="tabs-7-1">
                       <p>Wonder Tour is committed to bringing our clients the best in value and quality travel arrangements. We are passionate about travel and sharing the world's wonders with you.</p>
@@ -218,7 +218,7 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>-->
       <!--	Our Services-->
       <section class="section section-sm">
         <div class="container">
@@ -283,8 +283,8 @@
                     <div class="box-icon-classic-icon fl-bigmug-line-hot67"></div>
                   </div>
                   <div class="unit-body">
-                    <h5 class="box-icon-classic-title"><a href="#">Handpicked Hotels</a></h5>
-                    <p class="box-icon-classic-text">Our team offers only the best selection of affordable and luxury hotels to our clients.</p>
+                    <h5 class="box-icon-classic-title"><a href="#">Handpicked Mobiles and Laptops</a></h5>
+                    <p class="box-icon-classic-text">Our team offers only the best selection of affordable and luxury devices to our clients.</p>
                   </div>
                 </div>
               </article>
@@ -306,12 +306,12 @@
         </div>
       </section>
       <!-- Hot tours-->
-      <section class="section section-sm bg-default">
+<!--      <section class="section section-sm bg-default">
         <div class="container">
           <h3 class="oh-desktop"><span class="d-inline-block wow slideInDown">Hot Tours</span></h3>
           <div class="row row-sm row-40 row-md-50">
             <div class="col-sm-6 col-md-12 wow fadeInRight">
-              <!-- Product Big-->
+               Product Big
               <article class="product-big">
                 <div class="unit flex-column flex-md-row align-items-md-stretch">
                   <div class="unit-left"><a class="product-big-figure" href="#"><img src="images/product-big-1-600x366.jpg" alt="" width="600" height="366"/></a></div>
@@ -329,7 +329,7 @@
               </article>
             </div>
             <div class="col-sm-6 col-md-12 wow fadeInLeft">
-              <!-- Product Big-->
+               Product Big
               <article class="product-big">
                 <div class="unit flex-column flex-md-row align-items-md-stretch">
                   <div class="unit-left"><a class="product-big-figure" href="#"><img src="images/product-big-2-600x366.jpg" alt="" width="600" height="366"/></a></div>
@@ -348,14 +348,14 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>-->
       <!-- Different People-->
-      <section class="section section-sm">
+<!--      <section class="section section-sm">
         <div class="container">
           <h3 class="title-block find-car oh"><span class="d-inline-block wow slideInUp">Different People — One Mission</span></h3>
           <div class="row row-30 justify-content-center box-ordered">
             <div class="col-sm-6 col-md-5 col-lg-3">
-              <!-- Team Modern-->
+               Team Modern
               <article class="team-modern">
                 <div class="team-modern-header"><a class="team-modern-figure" href="#"><img class="img-circles" src="images/user-1-118x118.jpg" alt="" width="118" height="118"/></a>
                   <svg x="0px" y="0px" width="270px" height="70px" viewbox="0 0 270 70" enable-background="new 0 0 270 70" xml:space="preserve">
@@ -372,7 +372,7 @@
               </article>
             </div>
             <div class="col-sm-6 col-md-5 col-lg-3">
-              <!-- Team Modern-->
+               Team Modern
               <article class="team-modern">
                 <div class="team-modern-header"><a class="team-modern-figure" href="#"><img class="img-circles" src="images/user-2-118x118.jpg" alt="" width="118" height="118"/></a>
                   <svg x="0px" y="0px" width="270px" height="70px" viewbox="0 0 270 70" enable-background="new 0 0 270 70" xml:space="preserve">
@@ -389,7 +389,7 @@
               </article>
             </div>
             <div class="col-sm-6 col-md-5 col-lg-3">
-              <!-- Team Modern-->
+               Team Modern
               <article class="team-modern">
                 <div class="team-modern-header"><a class="team-modern-figure" href="#"><img class="img-circles" src="images/user-3-118x118.jpg" alt="" width="118" height="118"/></a>
                   <svg x="0px" y="0px" width="270px" height="70px" viewbox="0 0 270 70" enable-background="new 0 0 270 70" xml:space="preserve">
@@ -406,7 +406,7 @@
               </article>
             </div>
             <div class="col-sm-6 col-md-5 col-lg-3">
-              <!-- Team Modern-->
+               Team Modern
               <article class="team-modern">
                 <div class="team-modern-header"><a class="team-modern-figure" href="#"><img class="img-circles" src="images/user-4-118x118.jpg" alt="" width="118" height="118"/></a>
                   <svg x="0px" y="0px" width="270px" height="70px" viewbox="0 0 270 70" enable-background="new 0 0 270 70" xml:space="preserve">
@@ -424,9 +424,9 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>-->
       <!-- Section Subscribe-->
-      <section class="section bg-default text-center offset-top-50">
+<!--      <section class="section bg-default text-center offset-top-50">
         <div class="parallax-container" data-parallax-img="images/parallax-1-1920x850.jpg">
           <div class="parallax-content section-xl section-inset-custom-1 context-dark bg-overlay-2-21">
             <div class="container">
@@ -435,56 +435,56 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>-->
       <!--	Instagrram wondertour-->
-      <section class="section section-sm section-top-0 section-fluid section-relative bg-gray-4">
+<!--      <section class="section section-sm section-top-0 section-fluid section-relative bg-gray-4">
         <div class="container-fluid">
           <h6 class="gallery-title">Gallery</h6>
-          <!-- Owl Carousel-->
+           Owl Carousel
           <div class="owl-carousel owl-classic owl-dots-secondary" data-items="1" data-sm-items="2" data-md-items="3" data-lg-items="4" data-xl-items="5" data-xxl-items="6" data-stage-padding="15" data-xxl-stage-padding="0" data-margin="30" data-autoplay="true" data-nav="true" data-dots="true">
-            <!-- Thumbnail Classic-->
+             Thumbnail Classic
             <article class="thumbnail thumbnail-mary">
               <div class="thumbnail-mary-figure"><img src="images/gallery-image-1-270x195.jpg" alt="" width="270" height="195"/>
               </div>
               <div class="thumbnail-mary-caption"><a class="icon fl-bigmug-line-zoom60" href="images/gallery-image-1-1200x800-original.jpg" data-lightgallery="item"><img src="images/gallery-image-1-270x195.jpg" alt="" width="270" height="195"/></a>
               </div>
             </article>
-            <!-- Thumbnail Classic-->
+             Thumbnail Classic
             <article class="thumbnail thumbnail-mary">
               <div class="thumbnail-mary-figure"><img src="images/gallery-image-2-270x195.jpg" alt="" width="270" height="195"/>
               </div>
               <div class="thumbnail-mary-caption"><a class="icon fl-bigmug-line-zoom60" href="images/gallery-image-2-1200x800-original.jpg" data-lightgallery="item"><img src="images/gallery-image-2-270x195.jpg" alt="" width="270" height="195"/></a>
               </div>
             </article>
-            <!-- Thumbnail Classic-->
+             Thumbnail Classic
             <article class="thumbnail thumbnail-mary">
               <div class="thumbnail-mary-figure"><img src="images/gallery-image-3-270x195.jpg" alt="" width="270" height="195"/>
               </div>
               <div class="thumbnail-mary-caption"><a class="icon fl-bigmug-line-zoom60" href="images/gallery-image-3-1200x800-original.jpg" data-lightgallery="item"><img src="images/gallery-image-3-270x195.jpg" alt="" width="270" height="195"/></a>
               </div>
             </article>
-            <!-- Thumbnail Classic-->
+             Thumbnail Classic
             <article class="thumbnail thumbnail-mary">
               <div class="thumbnail-mary-figure"><img src="images/gallery-image-4-270x195.jpg" alt="" width="270" height="195"/>
               </div>
               <div class="thumbnail-mary-caption"><a class="icon fl-bigmug-line-zoom60" href="images/gallery-image-4-1200x800-original.jpg" data-lightgallery="item"><img src="images/gallery-image-4-270x195.jpg" alt="" width="270" height="195"/></a>
               </div>
             </article>
-            <!-- Thumbnail Classic-->
+             Thumbnail Classic
             <article class="thumbnail thumbnail-mary">
               <div class="thumbnail-mary-figure"><img src="images/gallery-image-5-270x195.jpg" alt="" width="270" height="195"/>
               </div>
               <div class="thumbnail-mary-caption"><a class="icon fl-bigmug-line-zoom60" href="images/gallery-image-5-1200x800-original.jpg" data-lightgallery="item"><img src="images/gallery-image-5-270x195.jpg" alt="" width="270" height="195"/></a>
               </div>
             </article>
-            <!-- Thumbnail Classic-->
+             Thumbnail Classic
             <article class="thumbnail thumbnail-mary">
               <div class="thumbnail-mary-figure"><img src="images/gallery-image-6-270x195.jpg" alt="" width="270" height="195"/>
               </div>
               <div class="thumbnail-mary-caption"><a class="icon fl-bigmug-line-zoom60" href="images/gallery-image-6-1200x800-original.jpg" data-lightgallery="item"><img src="images/gallery-image-6-270x195.jpg" alt="" width="270" height="195"/></a>
               </div>
             </article>
-            <!-- Thumbnail Classic-->
+             Thumbnail Classic
             <article class="thumbnail thumbnail-mary">
               <div class="thumbnail-mary-figure"><img src="images/gallery-image-7-270x195.jpg" alt="" width="270" height="195"/>
               </div>
@@ -493,7 +493,7 @@
             </article>
           </div>
         </div>
-      </section>
+      </section>-->
       <!-- Page Footer-->
       <footer class="section footer-corporate context-dark">
         <div class="footer-corporate-inset">
@@ -507,19 +507,19 @@
                       <li>
                         <div class="unit">
                           <div class="unit-left"><span class="icon fa fa-phone"></span></div>
-                          <div class="unit-body"><a class="link-phone" href="tel:#">+1 323-913-4688</a></div>
+                          <div class="unit-body"><a class="link-phone" href="tel:#">0382721058</a></div>
                         </div>
                       </li>
                       <li>
                         <div class="unit">
                           <div class="unit-left"><span class="icon fa fa-envelope"></span></div>
-                          <div class="unit-body"><a class="link-aemail" href="mailto:#">info@demolink.org</a></div>
+                          <div class="unit-body"><a class="link-aemail" href="mailto:#">haquangthangvnn@gmail.conm</a></div>
                         </div>
                       </li>
                       <li>
                         <div class="unit">
                           <div class="unit-left"><span class="icon fa fa-location-arrow"></span></div>
-                          <div class="unit-body"><a class="link-location" href="#">4730 Crystal Springs Dr, Los Angeles, CA 90027</a></div>
+                          <div class="unit-body"><a class="link-location" href="#">FPT大学 Hoa Lac Hightech Park</a></div>
                         </div>
                       </li>
                     </ul>
@@ -532,16 +532,16 @@
                     <h6 class="text-spacing-100 text-uppercase">Popular news</h6>
                     <!-- Post Minimal 2-->
                     <article class="post post-minimal-2">
-                      <p class="post-minimal-2-title"><a href="#">Your Personal Guide to 5 Best Places to Visit on Earth</a></p>
+                      <p class="post-minimal-2-title"><a href="https://vn-z.vn/threads/microsoft-edge-dang-thuc-hien-chan-cac-thong-bao-rac-tu-cac-trang-web-xau.76020/">Best smartphones in 2022</a></p>
                       <div class="post-minimal-2-time">
-                        <time datetime="2019-05-04">May 04, 2019</time>
+                        <time datetime="2022-05-04">May 04, 2022</time>
                       </div>
                     </article>
                     <!-- Post Minimal 2-->
                     <article class="post post-minimal-2">
-                      <p class="post-minimal-2-title"><a href="#">Top 10 Hotels: Rating by Wonder Tour Travel Experts</a></p>
+                      <p class="post-minimal-2-title"><a href="https://www.pcgamer.com/best-gaming-laptop/">Best laptops in 2022</a></p>
                       <div class="post-minimal-2-time">
-                        <time datetime="2019-05-04">May 04, 2019</time>
+                        <time datetime="2022-05-04">May 04, 2022</time>
                       </div>
                     </article>
                   </div>
@@ -552,13 +552,13 @@
                   <div class="wow slideInLeft" data-wow-delay="0s">
                     <h6 class="text-spacing-100 text-uppercase">Quick links</h6>
                     <ul class="row-6 list-0 list-marked list-marked-md list-marked-secondary list-custom-2">
-                      <li><a href="about.html">About us</a></li>
-                      <li><a href="#">Our Tours</a></li>
-                      <li><a href="#">Our Team</a></li>
-                      <li><a href="#">Gallery</a></li>
-                      <li><a href="#">Blog</a></li>
+                      <li><a href="#">About us</a></li>
+                      <li><a href="category">Our Products</a></li>
+                      <!-- <li><a href="#">Our Team</a></li> -->
+                      <!-- <li><a href="#">Gallery</a></li> -->
+                      <!-- <li><a href="#">Blog</a></li> -->
                     </ul>
-                    <div class="group-md group-middle justify-content-sm-start"><a class="button button-lg button-primary button-ujarak" href="#">Get in touch</a></div>
+                    <div class="group-md group-middle justify-content-sm-start"><a class="button button-lg button-primary button-ujarak" href="category">Get in touch</a></div>
                   </div>
                 </div>
               </div>
@@ -571,7 +571,7 @@
               <div class="col-sm-6 col-md-4 text-sm-right text-md-center">
                 <div>
                   <ul class="list-inline list-inline-sm footer-social-list-2">
-                    <li><a class="icon fa fa-facebook" href="#"></a></li>
+                    <li><a target="_blank" class="icon fa fa-facebook" href="https://www.facebook.com/thang.ha.5895"></a></li>
                     <li><a class="icon fa fa-twitter" href="#"></a></li>
                     <li><a class="icon fa fa-google-plus" href="#"></a></li>
                     <li><a class="icon fa fa-instagram" href="#"></a></li>

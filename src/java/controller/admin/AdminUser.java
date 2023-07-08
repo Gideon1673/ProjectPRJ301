@@ -4,6 +4,7 @@
  */
 package controller.admin;
 
+import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -32,21 +33,48 @@ public class AdminUser extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         UserService userService = new UserService();
-        
+
         try ( PrintWriter out = response.getWriter()) {
             String service = request.getParameter("service");
-            if(service==null){
+            if (service == null) {
                 response.sendRedirect("AdminUser?displayUsers");
                 return;
             }
-            
-            switch(service) {
+
+            switch (service) {
                 case "displayUsers":
                     request.setAttribute("users", userService.getAllUSers());
                     request.getRequestDispatcher("/admin/displayUsers.jsp").forward(request, response);
                     break;
+                case "update":
+                    if (request.getParameter("submit") == null) { // user navigate to update form
+                        int uID = Integer.valueOf(request.getParameter("uID"));
+                        User user = userService.getUserByID(uID);
+
+                        // Check for valid parameter
+                        if (user == null) {
+                            request.setAttribute("msg", "Error: User does not exist");
+                            request.getRequestDispatcher("/error-page.jsp").forward(request, response);
+                        } else { // update the user information
+                            request.setAttribute("user", user);
+                            request.getRequestDispatcher("/admin/updateUser.jsp").forward(request, response);
+                        }
+                    } else { // user submit update form
+                        int uID = Integer.valueOf(request.getParameter("uID"));
+                        String usrname = request.getParameter("user_name");
+                        String fullname = request.getParameter("user_fname");
+                        String email = request.getParameter("u_email");
+                        String phone = request.getParameter("phone");
+                        String city = request.getParameter("u_city");
+                        
+                        // create a temp object contains informations needed update
+                        User tmpUser = new User(uID, fullname, usrname, email, phone, null, null, city);
+                        userService.updateUser(tmpUser);
+                        response.sendRedirect("AdminUser?service=displayUsers");
+                    }
+
             }
         }
     }

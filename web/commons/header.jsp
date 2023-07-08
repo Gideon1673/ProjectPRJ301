@@ -36,7 +36,7 @@
         </button>
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
-            <ul class="navbar-nav m-auto">
+            <ul class="navbar-nav m-auto header-navbar">
                 <li class="nav-item">
                     <a class="nav-link" href="trang-chu">Home</a>
                 </li>
@@ -98,6 +98,17 @@
     function search() {
         let searchText = getSearchQuery();
         sendSearchPOST(searchText);
+    }
+
+    // Active the <li> item of <ul> navbar-nav based on the URL
+    function activeListItem() {
+        let path = window.location.pathname;
+        let list = document.querySelector(".header-navbar");
+
+        if(path === '/Project-Final/category') {
+            
+        }
+
     }
 
     

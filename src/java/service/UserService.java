@@ -23,6 +23,7 @@ import java.util.logging.Logger;
 public class UserService {
 
     private static final UserDAO userDao = new UserDAO();
+    private static String[] userRoles = {"user", "admin"};
 
     /**
      *
@@ -45,18 +46,6 @@ public class UserService {
         }
     }
 
-    /**
-     *
-     * @param username
-     * @param password
-     * @return
-     */
-//    public boolean userLogin2(String username, String password) {
-//        // Generate salt for password
-//        byte[] salt = generateSalt();
-//        System.out.println(salt.toString());
-//        
-//    }
     /**
      * Generate salt, helping in password hashing
      *
@@ -134,17 +123,35 @@ public class UserService {
         return userDao.getUserByUsername(username);
     }
 
-//    public User getUserByID(int id) {
-//        
-//    }
-//    
-//    public int getUserRole(int userID) {
-//        User user = get
-//    }
-//    
-    public int getUserRole(String username) {
+    /**
+     * Get user role by username
+     * @param username
+     * @return role name
+     */
+    public String getUserRole(String username) {
+//        System.out.println("username: " + username);
+        return userRoles[userDao.getUserRole(username) - 1]; // subtract 1 becasue roleID in DB begins from 1
+    }
+    
+    public int getUserRoleID(String username) {
         return userDao.getUserRole(username);
     }
 
-    
+    public boolean updateUser(User user) {
+        if (userDao.updateUser(user) > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Get user in the DB by ID
+     *
+     * @param uID
+     * @return User object or null if there is no id
+     */
+    public User getUserByID(int uID) {
+        return userDao.getUserByID(uID);
+    }
 }
