@@ -199,3 +199,6 @@ SELECT * FROM Product WHERE product_name LIKE 'Neo 10';
 
 SELECT b.role_id
 FROM [User] a JOIN UserRole b ON a.id = b.user_id;
+
+ALTER TABLE Product ADD CONSTRAINT default_img_path DEFAULT 'https://dummyimage.com/600x400/55595c/fff' FOR img_path;
+ALTER TABLE Product ADD CONSTRAINT default_status DEFAULT 1 FOR status;

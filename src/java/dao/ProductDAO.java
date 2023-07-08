@@ -17,9 +17,6 @@ import java.util.logging.Logger;
  * @author DTS
  */
 public class ProductDAO extends DBConnect {
-//    public Vector<Product> getSubsetProduct(int firstRow, int rowCount) {
-//        String sqlStatement = "";
-//    }
 
     /**
      * Get a vector contains all products in the DB.
@@ -43,8 +40,9 @@ public class ProductDAO extends DBConnect {
                 boolean status = rs.getBoolean(8);
                 int discountID = rs.getInt(9);
                 String desc = rs.getString(10);
+                String img_path = rs.getString(11);
 
-                Product prod = new Product(id, pName, manuID, modelYear, price, quantity, categoryID, status, discountID, desc);
+                Product prod = new Product(id, pName, manuID, modelYear, price, quantity, categoryID, status, discountID, desc, img_path);
                 products.add(prod);
             }
         } catch (SQLException ex) {
@@ -72,8 +70,9 @@ public class ProductDAO extends DBConnect {
                 boolean status = rs.getBoolean(8);
                 int discountID = rs.getInt(9);
                 String desc = rs.getString(10);
+                String img_path = rs.getString(11);
 
-                Product prod = new Product(id, pName, manuID, modelYear, price, quantity, categoryID, status, discountID, desc);
+                Product prod = new Product(id, pName, manuID, modelYear, price, quantity, categoryID, status, discountID, desc, img_path);
                 products.add(prod);
             }
         } catch (SQLException ex) {
@@ -106,8 +105,9 @@ public class ProductDAO extends DBConnect {
                 boolean status = rs.getBoolean(8);
                 int discountID = rs.getInt(9);
                 String desc = rs.getString(10);
+                String img_path = rs.getString(11);
 
-                prod = new Product(id, pName, manuID, modelYear, price, quantity, categoryID, status, discountID, desc);
+                prod = new Product(id, pName, manuID, modelYear, price, quantity, categoryID, status, discountID, desc, img_path);
             }
         } catch (SQLException ex) {
             System.out.println(ex.getCause());
@@ -163,8 +163,9 @@ public class ProductDAO extends DBConnect {
                 boolean status = rs.getBoolean(8);
                 int discountID = rs.getInt(9);
                 String desc = rs.getString(10);
+                String img_path = rs.getString(11);
 
-                products.add(new Product(id, pName, manuID, modelYear, price, quantity, categoryID, status, discountID, desc));
+                products.add(new Product(id, pName, manuID, modelYear, price, quantity, categoryID, status, discountID, desc, img_path));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -184,9 +185,10 @@ public class ProductDAO extends DBConnect {
                 + "      ,[status] = ?\n"
                 + "      ,[discount_id] = ?\n"
                 + "      ,[description] = ?\n"
+                + "      , img_path = ?"
                 + " WHERE product_id = ?;";
-        
-            PreparedStatement pre;
+
+        PreparedStatement pre;
         try {
             pre = connect.prepareStatement(sqlStatement);
             pre.setString(1, p.getProductName());
@@ -198,7 +200,8 @@ public class ProductDAO extends DBConnect {
             pre.setBoolean(7, p.isStatus());
             pre.setInt(8, p.getDiscountID());
             pre.setString(9, p.getDescription());
-            pre.setInt(10, p.getProductID());
+            pre.setString(10, p.getImg_path());
+            pre.setInt(11, p.getProductID());
 
             updatedRows = pre.executeUpdate();
         } catch (SQLException ex) {

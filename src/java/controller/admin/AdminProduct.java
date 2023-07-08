@@ -14,10 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.SQLException;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import service.CategoryService;
 import service.ManufacturerService;
 import service.ProductService;
@@ -67,11 +64,15 @@ public class AdminProduct extends HttpServlet {
                         boolean status = Boolean.valueOf(request.getParameter("status"));
                         int discountID = Integer.valueOf(request.getParameter("discount_id")); // FIX PARAM NAME PLEASE
                         String desc = request.getParameter("product_description");
+                        String img_path = request.getParameter("img_path");
+                        if(img_path == null || img_path.isEmpty()) {
+                            img_path = "https://dummyimage.com/600x400/55595c/fff";
+                        }
 
-                        Product product = new Product(productID, productName, manuID, modelYear, price, quantity, cat_id, status, discountID, desc);
+                        Product product = new Product(productID, productName, manuID, modelYear, price, quantity, cat_id, status, discountID, desc, img_path);
 
                         // DEBUG
-                        System.out.println(product);
+//                        System.out.println(product);
                         pService.insertProduct(product);
 
                         response.sendRedirect("AdminProduct?service=displayAll");
@@ -103,8 +104,9 @@ public class AdminProduct extends HttpServlet {
                         String desc = request.getParameter("product_description");
                         int disID = Integer.valueOf(request.getParameter("discount_id"));
                         boolean status = Boolean.valueOf(request.getParameter("status"));
+                        String img_path = request.getParameter("img_path");
 
-                        Product p = new Product(pID, productName, manuID, year, price, quantity, catID, status, disID, desc);
+                        Product p = new Product(pID, productName, manuID, year, price, quantity, catID, status, disID, desc, img_path);
 
                         pService.updateProduct(p);
 

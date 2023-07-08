@@ -43,6 +43,11 @@ https://www.baeldung.com/java-password-hashing
 - Thêm User management vào admin --> fix xong displayUsers, update user
 - Thêm nút back ở phần admin
 - Làm chức năng quên mật khẩu
+8/7/2023
+- Sửa design DB bảng Product, thêm img_path. --> ảnh hưởng ProductDAO, Product, ProductService, displayProducts.jsp.
+- Đã add constraint DEFAULT cho img_path, vì vậy hàm addProduct() sẽ không bị ảnh hưởng nếu không insert cột img_path (nếu cần sửa thì sau này modify lại là được)
+- Đã thêm chức năng img_path, hiện ảnh cho product --> Xong. Lưu ý, admin phải tải ảnh về server trước, sau đó thực hiện update img_path manually cho product
+- Xem xét thêm chức năng tải ảnh trực tiếp lên server
 
 ------------- EXP ----------------
 1. Button act like a <a> tag

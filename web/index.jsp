@@ -532,14 +532,14 @@
                     <h6 class="text-spacing-100 text-uppercase">Popular news</h6>
                     <!-- Post Minimal 2-->
                     <article class="post post-minimal-2">
-                      <p class="post-minimal-2-title"><a href="https://vn-z.vn/threads/microsoft-edge-dang-thuc-hien-chan-cac-thong-bao-rac-tu-cac-trang-web-xau.76020/">Best smartphones in 2022</a></p>
+                        <p class="post-minimal-2-title"><a target="_blank" href="https://vn-z.vn/threads/microsoft-edge-dang-thuc-hien-chan-cac-thong-bao-rac-tu-cac-trang-web-xau.76020/">Best smartphones in 2022</a></p>
                       <div class="post-minimal-2-time">
                         <time datetime="2022-05-04">May 04, 2022</time>
                       </div>
                     </article>
                     <!-- Post Minimal 2-->
                     <article class="post post-minimal-2">
-                      <p class="post-minimal-2-title"><a href="https://www.pcgamer.com/best-gaming-laptop/">Best laptops in 2022</a></p>
+                        <p class="post-minimal-2-title"><a target="_blank" href="https://www.pcgamer.com/best-gaming-laptop/">Best laptops in 2022</a></p>
                       <div class="post-minimal-2-time">
                         <time datetime="2022-05-04">May 04, 2022</time>
                       </div>

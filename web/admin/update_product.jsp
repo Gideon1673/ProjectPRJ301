@@ -109,7 +109,14 @@
   <label class="col-md-4 control-label" for="percentage_discount">DISCOUNT ID</label>  
   <div class="col-md-4">
   <input id="discount_id" name="discount_id" placeholder="DISCOUNT ID" class="form-control input-md" required type="text" value="<%= product.getDiscountID() %>">
-    
+  </div>
+</div>
+  
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="img_path">Image Path</label>  
+  <div class="col-md-4">
+  <input id="img_path" name="img_path" placeholder="Image path" class="form-control input-md" required type="text" value="<%= product.getImg_path() %>">
   </div>
 </div>
 

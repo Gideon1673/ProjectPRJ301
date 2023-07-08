@@ -19,8 +19,9 @@ public class Product {
     private boolean status;
     private int discountID;
     private String description;
+    private String img_path;
 
-    public Product(int productID, String productName, int manuID, int modelYear, double price, int quantity, int categoryID, boolean status, int discountID, String description) {
+    public Product(int productID, String productName, int manuID, int modelYear, double price, int quantity, int categoryID, boolean status, int discountID, String description, String img_path) {
         this.productID = productID;
         this.productName = productName;
         this.manuID = manuID;
@@ -31,6 +32,15 @@ public class Product {
         this.status = status;
         this.discountID = discountID;
         this.description = description;
+        this.img_path = img_path;
+    }
+
+    public String getImg_path() {
+        return img_path;
+    }
+
+    public void setImg_path(String img_path) {
+        this.img_path = img_path;
     }
 
     public int getProductID() {
