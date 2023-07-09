@@ -12,7 +12,6 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.sql.ResultSet;
 import java.util.Arrays;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -37,13 +36,13 @@ public class UserService {
             return false;
         } else {
             byte[] salted = userDao.getUserSalt(username);
-            System.out.println("salted: " + Arrays.toString(salted));
+//            System.out.println("salted: " + Arrays.toString(salted));
 
             byte[] hashedPassword = hashingPassword(password, salted);
             byte[] realHashed = userDao.getHashedPassword(username);
 
-            System.out.println("hashed1: " + Arrays.toString(hashedPassword));
-            System.out.println("hashed2: " + Arrays.toString(realHashed));
+//            System.out.println("hashed1: " + Arrays.toString(hashedPassword));
+//            System.out.println("hashed2: " + Arrays.toString(realHashed));
 
             return Arrays.equals(realHashed, hashedPassword);
         }
@@ -75,7 +74,7 @@ public class UserService {
             md = MessageDigest.getInstance("SHA-512");
             md.update(salt);
             byte[] hashedPassword = md.digest(password.getBytes(StandardCharsets.UTF_8));
-            System.out.println("Password after hash: " + Arrays.toString(hashedPassword));
+//            System.out.println("Password after hash: " + Arrays.toString(hashedPassword));
             return hashedPassword;
         } catch (NoSuchAlgorithmException ex) {
             System.out.println(ex.getMessage());

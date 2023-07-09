@@ -40,13 +40,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="trang-chu">Home</a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item ${activePage == "categories" ? "active" : ""}">
                     <a class="nav-link" href="category">Categories <span class="sr-only">(current)</span></a>
                 </li>
 <!--                <li class="nav-item">
                     <a class="nav-link" href="product.html">Product</a>
                 </li>-->
-                <li class="nav-item">
+                <li class="nav-item ${activePage == "cart" ? "active" : ""}">
                     <a class="nav-link" href="cart?service=displayAll">Cart</a>
                 </li>
 <!--                <li class="nav-item">

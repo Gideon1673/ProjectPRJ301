@@ -111,6 +111,10 @@ footer a {
                     <tbody>
                         <% for(Map.Entry<Integer, Integer> cartItem : cart.entrySet()) { 
                             Product product = productService.getProductByID(cartItem.getKey());
+                            // price of a item after discount
+                            double priceAfterSaled = productService.getFinalPrice(product.getProductID());
+                            // quantity of item in cart
+                            int quantity = cart.get(product.getProductID());
                         %>
                             <tr>
                                 <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
@@ -119,14 +123,14 @@ footer a {
                                 <!--Future feature-->
                                 <td>In stock</td>
                                 <!--<input type="hidden" name="pId" value="<%= product.getProductID() %>" />-->
-                                <td><input name="quantity" class="form-control" type="text" value="<%= cart.get(product.getProductID()) %>" /></td>
+                                <td><input name="quantity" class="form-control" type="text" value="<%= quantity %>" /></td>
                                 <%
-                                    double priceAfterSaled = productService.getFinalPrice(product.getProductID());
+                                    
                                 %>
                                 <td class="text-right"><%= priceAfterSaled %> €</td>
                                 <%
                                     // Calculate total price
-                                    total += priceAfterSaled;
+                                    total += priceAfterSaled * quantity;
                                 %>
                                 <td class="text-right"><a href="cart?service=remove&id=<%= product.getProductID() %>" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a> </td>
                                 <!-- <button onclick="location.href='cart?service=remove&id=<%= product.getProductID() %>'" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button> -->

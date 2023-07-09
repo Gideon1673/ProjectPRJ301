@@ -53,10 +53,17 @@ public class OrderService {
         cart.clear();
     }
 
+    /**
+     * Get total price of all items in the cart. total price =
+     * final-price-of-item (after discount) * quantity
+     *
+     * @param cart contains all items user added
+     * @return
+     */
     private double getTotalPrice(HashMap<Integer, Integer> cart) {
         double total = 0;
         for (Map.Entry<Integer, Integer> cartItem : cart.entrySet()) {
-            total += pService.getFinalPrice(cartItem.getKey());
+            total += pService.getFinalPrice(cartItem.getKey()) * cartItem.getValue();
         }
         return total;
     }
@@ -77,7 +84,7 @@ public class OrderService {
 //        -- !!! NEED TO CAREFULLY HANDLED LATER (SINCE THIS SOLUTION IS NOT GOOD)
 // I THINK THAT WE SHOULD NOT SET QUAN = 0 WHEN quan < quantity
         quant = (quant - quantity) < 0 ? 0 : quant - quantity;
-        
+
         OrderItem o = new OrderItem(orItemDao.getLastID() + 1, oID, prodID, quantity); // did NOT check for over quantity
         p.setQuantity(quant);
 
@@ -89,13 +96,15 @@ public class OrderService {
     public Vector<OrderDetail> getAllOrders() {
         return orderDao.getAllOrders();
     }
-    
+
     public OrderDetail getOrderByID(int oID) {
         return orderDao.getOrderByID(oID);
     }
-    
+
     /**
-     * Delete order_details with orderID, and all order_items corresponding to that order_details
+     * Delete order_details with orderID, and all order_items corresponding to
+     * that order_details
+     *
      * @param orderID orderID of order you want to delete
      */
     public void deleteOrder(int orderID) {

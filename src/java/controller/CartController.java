@@ -59,6 +59,7 @@ public class CartController extends HttpServlet {
 
             switch (service) {
                 case "displayAll":
+                    request.setAttribute("activePage", "cart");
                     request.getRequestDispatcher("/cart.jsp").forward(request, response);
                     break;
                 case "add":
