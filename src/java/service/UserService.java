@@ -4,7 +4,9 @@
  */
 package service;
 
+import dao.PasswordResetDAO;
 import dao.UserDAO;
+import entity.PasswordReset;
 import entity.User;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -23,6 +25,7 @@ import java.util.logging.Logger;
 public class UserService {
 
     private static final UserDAO userDao = new UserDAO();
+    private static final PasswordResetDAO passDao = new PasswordResetDAO();
     private static String[] userRoles = {"user", "admin"};
 
     /**
@@ -122,6 +125,10 @@ public class UserService {
     public User getUserByUsername(String username) {
         return userDao.getUserByUsername(username);
     }
+    
+    public User getUserByEmail(String email) {
+        return userDao.getUserByEmail(email);
+    }
 
     /**
      * Get user role by username
@@ -153,5 +160,30 @@ public class UserService {
      */
     public User getUserByID(int uID) {
         return userDao.getUserByID(uID);
+    }
+    
+    public void addPasswordReset(PasswordReset pwdR) {
+        passDao.addPasswordReset(pwdR);
+    }
+    
+    /**
+     * Check whether this token belongs to this email in DB, and is in time
+     * @param token
+     * @return 
+     */
+    public boolean checkValidToken(String token) {
+        return passDao.checkValidToken(token);
+    }
+    
+    /**
+     * 
+     * @param newPassword
+     * @param token 
+     */
+    public void changeUserPassword(String newPassword, String token) {
+        String email = passDao.getEmailByToken(token);
+        byte[] salt = userDao.getUserSaltByEmail(email);
+        byte[] password = hashingPassword(newPassword, salt);
+        userDao.updatePassword(email, password);
     }
 }

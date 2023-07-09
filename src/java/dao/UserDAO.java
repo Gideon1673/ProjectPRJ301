@@ -21,7 +21,10 @@ import java.util.logging.Logger;
 public class UserDAO extends DBConnect {
 
     /**
+     * Return user object corresponding to id
      *
+     * @param id
+     * @return
      */
     public User getUserByID(int id) {
         String sqlStatement = "SELECT * FROM [User] WHERE id = " + id + ";";
@@ -45,6 +48,12 @@ public class UserDAO extends DBConnect {
         return user;
     }
 
+    /**
+     * Get User object by username
+     *
+     * @param username
+     * @return
+     */
     public User getUserByUsername(String username) {
         String sqlStatement = "SELECT * FROM [User] WHERE username = '" + username + "';";
         ResultSet rs = getData(sqlStatement);
@@ -54,6 +63,38 @@ public class UserDAO extends DBConnect {
                 int id = rs.getInt(1);
                 String fullname = rs.getString(2);
                 String email = rs.getString(4);
+                String phone = rs.getString(5);
+                byte[] salt = rs.getBytes(6);
+                byte[] passwordHashed = rs.getBytes(7);
+                String city = rs.getString(8);
+
+                user = new User(id, fullname, username, email, phone, salt, passwordHashed, city);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return user;
+    }
+
+    /**
+     * Get User by username
+     *
+     * @param email
+     * @return User object, or null if there is no user with email provided
+     */
+    public User getUserByEmail(String email) {
+        String sql = "SELECT * FROM [User] WHERE email = ?;";
+        User user = null;
+        try {
+            PreparedStatement pre = connect.prepareStatement(sql);
+            pre.setString(1, email);
+            ResultSet rs = pre.executeQuery();
+
+            if (rs.next()) {
+                int id = rs.getInt(1);
+                String fullname = rs.getString(2);
+                String username = rs.getString(3);
+
                 String phone = rs.getString(5);
                 byte[] salt = rs.getBytes(6);
                 byte[] passwordHashed = rs.getBytes(7);
@@ -267,7 +308,7 @@ public class UserDAO extends DBConnect {
                 + "   SET [fullName] = ?,[username] = ?,[email] = ?,[phone] = ?,[city] = ?\n"
                 + " WHERE id = ?;";
         int n = 0;
-        
+
         try {
             PreparedStatement pre = connect.prepareStatement(sql);
             pre.setString(1, user.getFullname());
@@ -276,10 +317,56 @@ public class UserDAO extends DBConnect {
             pre.setString(4, user.getPhone());
             pre.setString(5, user.getCity());
             pre.setInt(6, user.getId());
-            
+
             n = pre.executeUpdate();
         } catch (SQLException ex) {
             System.out.println("Update user error: " + ex.getMessage());
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return n;
+    }
+
+    /**
+     * Get salt of account by email
+     *
+     * @param email
+     * @return salt String, or null if error
+     */
+    public byte[] getUserSaltByEmail(String email) {
+        String sqlStatement = "SELECT salt FROM [User] WHERE email LIKE ?;";
+        try {
+            PreparedStatement pre = connect.prepareStatement(sqlStatement);
+
+            pre.setString(1, email);
+
+            ResultSet rs = pre.executeQuery();
+
+            if (rs.next()) {
+                return rs.getBytes(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    /**
+     *
+     * @param email email of account to update
+     * @param password byte[] array contains hashed password
+     * @return 
+     */
+    public int updatePassword(String email, byte[] password) {
+        String sql = "UPDATE [dbo].[User]\n"
+                + "   SET [pwd_hashed] = ?\n"
+                + " WHERE email LIKE ?;";
+        int n = 0;
+        try {
+            PreparedStatement pre = connect.prepareStatement(sql);
+            pre.setBytes(1, password);
+            pre.setString(2, email);
+            n = pre.executeUpdate();
+        } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return n;

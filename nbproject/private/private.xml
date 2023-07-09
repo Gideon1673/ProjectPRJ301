@@ -3,10 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/FPT-Semester-4/PRJ301/Project-Final/src/java/controller/admin/AdminOrder.java</file>
-            <file>file:/D:/FPT-Semester-4/PRJ301/Project-Final/src/java/service/OrderService.java</file>
-            <file>file:/D:/FPT-Semester-4/PRJ301/Project-Final/src/java/dao/OrderDetailDAO.java</file>
-            <file>file:/D:/FPT-Semester-4/PRJ301/Project-Final/web/admin/displayOrders.jsp</file>
+            <file>file:/D:/FPT-Semester-4/PRJ301/Project-Final/src/java/dao/PasswordResetDAO.java</file>
+            <file>file:/D:/FPT-Semester-4/PRJ301/Project-Final/src/java/service/UserService.java</file>
+            <file>file:/D:/FPT-Semester-4/PRJ301/Project-Final/src/java/controller/RecoverAccount.java</file>
+            <file>file:/D:/FPT-Semester-4/PRJ301/Project-Final/src/java/dao/UserDAO.java</file>
+            <file>file:/D:/FPT-Semester-4/PRJ301/Project-Final/web/password_reset_form.jsp</file>
+            <file>file:/D:/FPT-Semester-4/PRJ301/Project-Final/web/reset-password.jsp</file>
+            <file>file:/D:/FPT-Semester-4/PRJ301/Project-Final/src/java/entity/PasswordReset.java</file>
+            <file>file:/D:/FPT-Semester-4/PRJ301/Project-Final/web/error-page.jsp</file>
         </group>
     </open-files>
 </project-private>

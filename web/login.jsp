@@ -28,7 +28,7 @@
             <% if((Boolean)request.getAttribute("loginFailed")) { %>
             <p style="color:red">The username or password is incorrect. Please try again</p>
             <% } %>
-          <div class="pass"><a href="#">Forgot password?</a></div>
+          <div class="pass"><a href="recovery?service=forgotPassword">Forgot password?</a></div>
           <div class="row button">
             <input type="submit" value="Login">
             <input type="hidden" name="submit" value="login">

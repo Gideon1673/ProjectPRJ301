@@ -34,7 +34,7 @@ public class AdminOrder extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         OrderService oService = new OrderService();
-        
+
         try ( PrintWriter out = response.getWriter()) {
             String service = request.getParameter("service");
             if (service == null) {
@@ -49,8 +49,8 @@ public class AdminOrder extends HttpServlet {
                 case "delete":
                     int oID = Integer.valueOf(request.getParameter("oID"));
                     OrderDetail o = oService.getOrderByID(oID);
-                    if(o == null) { // there is no order with oID
-                        request.setAttribute("msg", "Error when deleting order with id " + oID +". There is no oID in DB");
+                    if (o == null) { // there is no order with oID
+                        request.setAttribute("msg", "Error when deleting order with id " + oID + ". There is no oID in DB");
                         request.getRequestDispatcher("/error-page.jsp").forward(request, response);
                     } else { // Delete order logic
                         oService.deleteOrder(oID);

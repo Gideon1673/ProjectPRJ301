@@ -55,8 +55,14 @@ CREATE TABLE [User] (
 );
 ALTER TABLE [User] ADD CONSTRAINT pk_userID PRIMARY KEY(id);
 
+CREATE TABLE PasswordReset (
+	email VARCHAR(50) NOT NULL,
+	token CHAR(20) NOT NULL
+);
+
 DROP TABLE [User];
 DROP TABLE [UserRole];
+DROP TABLE PasswordReset;
 
 DELETE FROM [User];
 DELETE FROM UserRole;
@@ -133,16 +139,19 @@ SELECT * FROM Discount;
 SELECT * FROM Product;
 SELECT * FROM order_details;
 SELECT * FROM order_items;
+SELECT * FROM PasswordReset;
+SELECT salt FROM [User] WHERE email LIKE 'haquangthangvnn@gmail.com';
+
 
 --SELECT order_id, user_id, order_status, order_date, total FROM order_details
 --WHERE order_id = 1;
 
---DELETE FROM [order_details]
---      WHERE order_id = 1;
+DELETE FROM order_items
+      WHERE order_id = 1;
 
 
 --SELECT id FROM [User] WHERE username = 'admin    ' AND pwd_hashed = '123456   ';
---SELECT * FROM [User] WHERE id = ?;
+SELECT * FROM [User] WHERE email = 'hqt@gmail.com';
 
 INSERT INTO Manufacturer(ID, Name, Phone, Email, Address) VALUES
 --(1, 'Apple', '1111', 'apple-inc@apple.com', 'LA-USA'),
