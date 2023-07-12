@@ -54,7 +54,7 @@
                 <td><%= p.getDiscountID() %></td>
                 <td><%= p.getDescription() %></td>
                 <td><a href="AdminProduct?service=update&id=<%= p.getProductID() %>">Update</a></td>
-                <td>Delete</td>
+                <!--<td>Delete</td>-->
             </tr>
             <% } %>
             </tbody>

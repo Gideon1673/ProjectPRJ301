@@ -62,7 +62,7 @@ public class CartController extends HttpServlet {
                     request.setAttribute("activePage", "cart");
                     request.getRequestDispatcher("/cart.jsp").forward(request, response);
                     break;
-                case "add":
+                case "add": // add item to cart
                     int productID = Integer.valueOf(request.getParameter("id"));
                     // specific handle for quantity from produtc_details
                     String quant = request.getParameter("quantity");

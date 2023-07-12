@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller.admin;
+package controller;
 
-import entity.OrderDetail;
+import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,14 +12,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import service.OrderService;
+import java.util.Vector;
+import service.ProductService;
 
 /**
  *
  * @author DTS
  */
-@WebServlet(name = "AdminOrder", urlPatterns = {"/AdminOrder"})
-public class AdminOrder extends HttpServlet {
+@WebServlet(name = "SearchController", urlPatterns = {"/search"})
+public class SearchController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,44 +34,20 @@ public class AdminOrder extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        OrderService oService = new OrderService();
-
+        
         try ( PrintWriter out = response.getWriter()) {
-            String service = request.getParameter("service");
-            if (service == null) {
-                service = "displayAll";
-            }
+            String searchPage = request.getParameter("activePage");
+            // FOR FUTURE EXPANSION
+//            if(searchPage == null) {
+//                searchPage = "categories";
+//            }
 
-            switch (service) {
-                case "displayAll":
-                    request.setAttribute("orders", oService.getAllOrders());
-                    request.getRequestDispatcher("/admin/displayOrders.jsp").forward(request, response);
+            searchPage = "categories";
+            
+            switch(searchPage) {
+                case "categories":
+                    request.getRequestDispatcher("category?service=search").forward(request, response);
                     break;
-                case "delete":
-                    int oID = Integer.valueOf(request.getParameter("oID"));
-                    OrderDetail o = oService.getOrderByID(oID);
-                    if (o == null) { // there is no order with oID
-                        request.setAttribute("msg", "Error when deleting order with id " + oID + ". There is no oID in DB");
-                        request.getRequestDispatcher("/error-page.jsp").forward(request, response);
-                    } else { // Delete order logic
-                        oService.deleteOrder(oID);
-                        response.sendRedirect("AdminOrder?service=displayAll");
-                    }
-                    break;
-                case "update":
-                    int orderID = Integer.valueOf(request.getParameter("oID"));
-                    OrderDetail orD = oService.getOrderByID(orderID);
-                    if (request.getParameter("submit") != null) { // user submit update form
-                        int status = Integer.valueOf(request.getParameter("oStatus"));
-                        orD.setOrderStatus(status);
-                        oService.updateOrderDetails(orD);
-                        response.sendRedirect("AdminOrder?service=displayAll");
-                    } else {
-                        
-                        request.setAttribute("orderDetails", orD);
-                        request.getRequestDispatcher("/admin/updateOrder.jsp").forward(request, response);
-                        return;
-                    }
             }
         }
     }

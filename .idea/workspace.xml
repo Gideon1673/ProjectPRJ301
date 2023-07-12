@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b0a5e330-fab5-486f-8d6e-8e56d4a06772" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/controller/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/controller/CartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/controller/admin/AdminOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/controller/admin/AdminOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/dao/OrderDetailDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/dao/OrderDetailDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/dao/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/dao/ProductDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/admin/customerMenu.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/customerMenu.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/admin/displayOrders.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/displayOrders.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/admin/displayProducts.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/displayProducts.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/cart.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/commons/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/commons/footer.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/commons/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/commons/header.jsp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2SSvZxVwhEYI1CNvjsGhXsVTw6K" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b0a5e330-fab5-486f-8d6e-8e56d4a06772" name="Changes" comment="" />
+      <created>1689152858645</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1689152858645</updated>
+      <workItem from="1689152860547" duration="15000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

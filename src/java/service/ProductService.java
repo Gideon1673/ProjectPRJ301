@@ -35,6 +35,10 @@ public class ProductService {
     public boolean insertProduct(Product p) {
         return productDao.insertProduct(p);
     }
+    
+//    public Vector<Product> searchByProductName(String pName) {
+//        return productDao.searchByProductName(pName);
+//    }
 
     /**
      * Get final price (after taxes, discount, etc. ) of an product

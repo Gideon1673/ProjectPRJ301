@@ -67,7 +67,7 @@ public class ProductController extends HttpServlet {
                     break;
                     
                 case "search":
-                    String searchText = request.getParameter("id");
+                    String searchText = request.getParameter("search");
                     Vector<Product> result = productService.findProductByName(searchText);
                     System.out.println(searchText);
                     request.setAttribute("products", result);

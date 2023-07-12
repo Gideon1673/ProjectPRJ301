@@ -120,8 +120,12 @@ footer a {
                                 <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
                               <!--Get product name by using productService-->
                                 <td><%= product.getProductName() %></td>
-                                <!--Future feature-->
-                                <td>In stock</td>
+                                <!--Stock-->
+                                <% if(product.getQuantity() > 0) { %>
+                                <td>In stock (available: <%= product.getQuantity() %>)</td>
+                                <% } else { %>
+                                <td>Out of orders</td>
+                                <% } %>
                                 <!--<input type="hidden" name="pId" value="<%= product.getProductID() %>" />-->
                                 <td><input name="quantity" class="form-control" type="text" value="<%= quantity %>" /></td>
                                 <%
@@ -156,12 +160,14 @@ footer a {
                         </tr>
                         <tr>
                             <td></td>
-                            <td><input form="cartForm" type="submit" value="Update"></td>
+                            <!--<td><input form="cartForm" type="submit" value="Update"></td>-->
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td><strong>Total</strong></td>
                             <td class="text-right"><strong><%= total %></strong></td>
                         </tr>
+                        
                     </tbody>
                 </table>
                 <!--</form>-->

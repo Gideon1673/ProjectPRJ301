@@ -54,23 +54,24 @@
                 </li>-->
             </ul>
 
-            <form class="form-inline my-2 my-lg-0">
+            <form id="search-field" class="form-inline my-2 my-lg-0" method="POST" action="search?activePage=${activePage}">
                 <div class="input-group input-group-sm">
-                    <form method="POST" action="abc" id="search-field">
-                        <input name="search" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Search...">
-                        <div class="input-group-append">
-                            <button type="button" class="btn btn-secondary btn-number" form="search-field">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </div>
-                    </form>                    
+                    <!--<form method="POST" action="abc" id="search-field">-->
+                    <input name="search" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Search...">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-secondary btn-number" form="search-field">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                    <!--</form>-->                    
                 </div>
-                
-                <a class="btn btn-success btn-sm ml-3" href="cart?service=displayAll">
-                    <i class="fa fa-shopping-cart"></i> Cart
-                    <span class="badge badge-light"><%= cart.size() %></span>
-                </a>
             </form>
+                
+            <a class="btn btn-success btn-sm ml-3" href="cart?service=displayAll">
+                <i class="fa fa-shopping-cart"></i> Cart
+                <span class="badge badge-light"><%= cart.size() %></span>
+            </a>
+            
         </div>
     </div>
 </nav>

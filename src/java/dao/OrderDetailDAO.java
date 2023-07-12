@@ -125,4 +125,34 @@ public class OrderDetailDAO extends DBConnect {
         }
         return n;
     }
+
+    /**
+     * Update order details
+     *
+     * @param o
+     * @return
+     */
+    public int updateOrderDetail(OrderDetail o) {
+        String sql = "UPDATE [dbo].[order_details]\n"
+                + "   SET [user_id] = ?\n"
+                + "      ,[order_status] = ?\n"
+                + "      ,[order_date] = ?\n"
+                + "      ,[total] = ?\n"
+                + " WHERE order_id = ?;";
+        int n = 0;
+        try {
+            PreparedStatement pre = connect.prepareStatement(sql);
+            
+            pre.setInt(1, o.getUserID());
+            pre.setInt(2, o.getOrderStatus());
+            pre.setString(3, o.getOrderDate());
+            pre.setDouble(4, o.getTotal());
+            pre.setInt(5, o.getOrderID());
+            
+            n = pre.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDetailDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return n;
+    }
 }

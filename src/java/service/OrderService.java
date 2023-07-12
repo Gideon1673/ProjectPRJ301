@@ -113,5 +113,9 @@ public class OrderService {
         // Then delete order_details
         orderDao.deleteOrderDetail(orderID);
     }
+    
+    public void updateOrderDetails(OrderDetail o) {
+        orderDao.updateOrderDetail(o);
+    }
 
 }

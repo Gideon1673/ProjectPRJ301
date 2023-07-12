@@ -149,7 +149,7 @@ public class ProductDAO extends DBConnect {
 
     public Vector<Product> getProductsByName(String name) {
         Vector<Product> products = new Vector<>();
-        String sqlStatement = "SELECT * FROM Product WHERE product_name LIKE '" + name + "';";
+        String sqlStatement = "SELECT * FROM Product WHERE product_name LIKE '%" + name + "%';";
         ResultSet rs = getData(sqlStatement);
         try {
             while (rs.next()) {
@@ -210,4 +210,38 @@ public class ProductDAO extends DBConnect {
 
         return updatedRows;
     }
+    
+    /**
+     * 
+     * @param pName
+     * @return A vector contains products
+     */
+//    public Vector<Product> searchByProductName(String pName) {
+//        String sql = "SELECT * FROM Product WHERE product_name = ?;";
+//        Vector<Product> products = new Vector<>();
+//        try {
+//            PreparedStatement pre = connect.prepareStatement(sql);
+//            pre.setString(1, pName);
+//            ResultSet rs = pre.executeQuery();
+//            
+//            while (rs.next()) {
+//                int id = rs.getInt(1);
+//                int manuID = rs.getInt(3);
+//                int modelYear = rs.getInt(4);
+//                double price = rs.getInt(5);
+//                int quantity = rs.getInt(6);
+//                int categoryID = rs.getInt(7);
+//                boolean status = rs.getBoolean(8);
+//                int discountID = rs.getInt(9);
+//                String desc = rs.getString(10);
+//                String img_path = rs.getString(11);
+//
+//                products.add(new Product(id, pName, manuID, modelYear, price, quantity, categoryID, status, discountID, desc, img_path));
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
+//        return products;
+//    }
 }
