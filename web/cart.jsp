@@ -111,10 +111,11 @@ footer a {
                     <tbody>
                         <% for(Map.Entry<Integer, Integer> cartItem : cart.entrySet()) { 
                             Product product = productService.getProductByID(cartItem.getKey());
+                            int productID = product.getProductID();
                             // price of a item after discount
-                            double priceAfterSaled = productService.getFinalPrice(product.getProductID());
+                            double priceAfterSaled = productService.getFinalPrice(productID);
                             // quantity of item in cart
-                            int quantity = cart.get(product.getProductID());
+                            int quantity = cart.get(productID);
                         %>
                             <tr>
                                 <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
@@ -124,13 +125,27 @@ footer a {
                                 <% if(product.getQuantity() > 0) { %>
                                 <td>In stock (available: <%= product.getQuantity() %>)</td>
                                 <% } else { %>
-                                <td>Out of orders</td>
+                                <td><i>Out of orders</i></td>
                                 <% } %>
-                                <!--<input type="hidden" name="pId" value="<%= product.getProductID() %>" />-->
-                                <td><input name="quantity" class="form-control" type="text" value="<%= quantity %>" /></td>
-                                <%
+                                
+                                <td>
                                     
-                                %>
+                                    <!--<input name="quantity" class="form-control" type="text" value="<%= quantity %>" />-->
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <a style="color: white" class="quantity-left-minus btn btn-danger btn-number"  data-type="minus" data-field="" href="cart?service=minusItem&id=<%= productID %>">
+                                                <i class="fa fa-minus"></i>
+                                            </a>
+                                        </div>
+                                        <!--<input type="hidden" name="pId" value="<%= productID %>" />-->
+                                        <input type="number" class="form-control" name="quantity" min="1" max="100" value="<%= quantity %>" readonly>
+                                        <div class="input-group-append">
+                                            <a style="color: white" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="" href="cart?service=plusItem&id=<%= productID %>">
+                                                <i class="fa fa-plus"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
                                 <td class="text-right"><%= priceAfterSaled %> €</td>
                                 <%
                                     // Calculate total price
@@ -190,7 +205,7 @@ footer a {
 <!-- Footer -->
 <jsp:include page="commons/footer.jsp" />
 <script type="text/javascript">
-
+    
 </script>
 </body>
 </html>

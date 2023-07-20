@@ -46,21 +46,31 @@
                 </div>
                 <div class="rd-navbar-aside-right rd-navbar-collapse">
                   <ul class="rd-navbar-corporate-contacts">
-                    <li>
-                      <div class="unit unit-spacing-xs">
-                        <div class="unit-left"><span class="icon fa fa-clock-o"></span></div>
-                        <div class="unit-body">
-                          <p>09:00<span>am</span> — 05:00<span>pm</span></p>
+                      
+                      <% if(request.getSession().getAttribute("username") != null) { %>
+                      <li>
+                        <div class="unit unit-spacing-xs">
+                          <div class="unit-left"><span class="icon fa-user"></span></div>
+                          <div class="unit-body">
+                              <p>Welcome <b>${username}</b></p>
+                          </div>
                         </div>
-                      </div>
-                    </li>
+                       </li>
+                      <% } %>
+                    
                     <li>
                       <div class="unit unit-spacing-xs">
                         <div class="unit-left"><span class="icon fa fa-phone"></span></div>
-                        <div class="unit-body"><a class="link-phone" href="tel:#">+1 323-913-4688</a></div>
+                        <div class="unit-body"><a class="link-phone" href="tel:#">0382721058</a></div>
                       </div>
                     </li>
-                  </ul><a class="button button-md button-default-outline-2 button-ujarak" href="#">Get a Free Quote</a>
+                  </ul>
+                    <% if(request.getSession().getAttribute("username") == null) { %>
+                        <a class="button button-md button-default-outline-2 button-ujarak" href="login">Login</a>
+                    <% } else { %>
+                        <a class="button button-md button-default-outline-2 button-ujarak" href="login?logout=true">Logout</a>
+
+                    <%  }%>
                 </div>
               </div>
             </div>
@@ -75,11 +85,11 @@
                   </ul>
                   <!-- RD Navbar Nav-->
                   <ul class="rd-navbar-nav">
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="index.html">Home</a>
-                    </li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="trang-chu">Home</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="category">Category</a></li>
                     <li class="rd-nav-item"><a class="rd-nav-link" href="about.html">About</a>
                     </li>
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="typography.html">Typography</a>
+                    <!--<li class="rd-nav-item"><a class="rd-nav-link" href="typography.html">Typography</a>-->
                     </li>
                     <li class="rd-nav-item active"><a class="rd-nav-link" href="contact-us.html">Contact Us</a>
                     </li>
@@ -109,8 +119,8 @@
                 <div class="box-contacts-body">
                   <div class="box-contacts-icon fl-bigmug-line-cellphone55"></div>
                   <div class="box-contacts-decor"></div>
-                  <p class="box-contacts-link"><a href="tel:#">+1 323-913-4688</a></p>
-                  <p class="box-contacts-link"><a href="tel:#">+1 323-888-4554</a></p>
+                  <p class="box-contacts-link"><a href="tel:#">+84 382-721-058</a></p>
+                  <!--<p class="box-contacts-link"><a href="tel:#">+1 323-888-4554</a></p>-->
                 </div>
               </article>
             </div>
@@ -119,7 +129,7 @@
                 <div class="box-contacts-body">
                   <div class="box-contacts-icon fl-bigmug-line-up104"></div>
                   <div class="box-contacts-decor"></div>
-                  <p class="box-contacts-link"><a href="#">4730 Crystal Springs Dr, Los Angeles, CA 90027</a></p>
+                  <p class="box-contacts-link"><a href="#">FPT大学 KM-29 - Hoa Lac High-tech Park</a></p>
                 </div>
               </article>
             </div>
@@ -128,8 +138,8 @@
                 <div class="box-contacts-body">
                   <div class="box-contacts-icon fl-bigmug-line-chat55"></div>
                   <div class="box-contacts-decor"></div>
-                  <p class="box-contacts-link"><a href="mailto:#">mail@demolink.org</a></p>
-                  <p class="box-contacts-link"><a href="mailto:#">info@demolink.org</a></p>
+                  <p class="box-contacts-link"><a href="mailto:haquangthangvnn@gmail.com">haquangthangvnn@gmail.com</a></p>
+                  <p class="box-contacts-link"><a href="mailto:thanghqhe176429@fpt.edu.vn">thanghqhe176429@fpt.edu.vn</a></p>
                 </div>
               </article>
             </div>
@@ -148,7 +158,7 @@
               <p>If you have any questions, just fill in the contact form, and we will answer you shortly.</p>
             </div>
           </article>
-          <form class="rd-form rd-form-variant-2 rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
+          <form class="rd-form rd-form-variant-2 rd-mailform" data-form-output="form-output-global" data-form-type="contact" method="POST" action="bat/rd-mailform.php">
             <div class="row row-14 gutters-14">
               <div class="col-md-4">
                 <div class="form-wrap">
@@ -180,7 +190,7 @@
         </div>
       </section>
 
-      <!-- Page Footer--><a class="banner" href="https://www.templatemonster.com/intense-multipurpose-html-template.html" target="_blank"><img src="images/intense_big_02.jpg" alt=""/></a>
+      <!-- Page Footer-->
       <footer class="section footer-corporate context-dark">
         <div class="footer-corporate-inset">
           <div class="container">
@@ -193,19 +203,19 @@
                       <li>
                         <div class="unit">
                           <div class="unit-left"><span class="icon fa fa-phone"></span></div>
-                          <div class="unit-body"><a class="link-phone" href="tel:#">+1 323-913-4688</a></div>
+                          <div class="unit-body"><a class="link-phone" href="tel:#">+84 382-721-058</a></div>
                         </div>
                       </li>
                       <li>
                         <div class="unit">
                           <div class="unit-left"><span class="icon fa fa-envelope"></span></div>
-                          <div class="unit-body"><a class="link-aemail" href="mailto:#">info@demolink.org</a></div>
+                          <div class="unit-body"><a class="link-aemail" href="mailto:thanghq14@fpt.com">thanghq14@fpt.com</a></div>
                         </div>
                       </li>
                       <li>
                         <div class="unit">
                           <div class="unit-left"><span class="icon fa fa-location-arrow"></span></div>
-                          <div class="unit-body"><a class="link-location" href="#">4730 Crystal Springs Dr, Los Angeles, CA 90027</a></div>
+                          <div class="unit-body"><a class="link-location" href="#">FPT大学 KM-29 - Hoa Lac High-tech Park</a></div>
                         </div>
                       </li>
                     </ul>

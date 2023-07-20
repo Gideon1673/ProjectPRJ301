@@ -28,7 +28,6 @@ import java.util.Base64;
 import java.util.Properties;
 import service.UserService;
 import entity.User;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -165,7 +164,6 @@ public class RecoverAccount extends HttpServlet {
         } catch (MessagingException e) {
             System.out.println("Messeage exception: " + e.getMessage());
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

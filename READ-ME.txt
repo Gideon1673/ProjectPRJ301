@@ -49,8 +49,16 @@ https://www.baeldung.com/java-password-hashing
 - Đã thêm chức năng img_path, hiện ảnh cho product --> Xong. Lưu ý, admin phải tải ảnh về server trước, sau đó thực hiện update img_path manually cho product
 - Xem xét thêm chức năng tải ảnh trực tiếp lên server
 - Thêm chức năng xóa order: Khi xóa order sẽ xóa thông in ở bảng orderDetails + orderItems --> xong
-- Thêm chức năng update status cho order
+- Thêm chức năng update status cho order --> Xong
 - Thêm chức năng remember me
+13/7/2023
+- Thực hiện add JS vào cart.jsp, tuy nhiên hiện tại đang gặp vấn đề về JS query multiple elements.
+20/7/2023
+- Update xong nút + - trong cart để tăng/giảm số lượng sản phẩm --> Xong
+- Yêu cầu cải tiến: Sử dụng JS AJAX hoặc Fetch API hoặc JQuery để send request đến Servlet, lấy response về để live update giỏ hàng (không cần phải reload như hiện tại)
+- Update trang product chỉ show sản phẩm có status = 1
+- Update admin (chủ yếu thêm DAO  CRUD, vì hiện tại đang ít quá)
+
 
 ------------- EXP ----------------
 1. Button act like a <a> tag

@@ -4,12 +4,24 @@
  */
 package controller;
 
+import jakarta.mail.Authenticator;
+import jakarta.mail.Message;
+import jakarta.mail.MessagingException;
+import jakarta.mail.Multipart;
+import jakarta.mail.PasswordAuthentication;
+import jakarta.mail.Session;
+import jakarta.mail.Transport;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeBodyPart;
+import jakarta.mail.internet.MimeMessage;
+import jakarta.mail.internet.MimeMultipart;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.Properties;
 
 /**
  *
@@ -31,10 +43,22 @@ public class Homepage extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
+//            String service = request.getParameter("service");
+//            if(service == null) {
+//                service = "homepage";
+//            }
+//            switch(service) {
+//                case "homepage":
+                    request.getRequestDispatcher("/index.jsp").forward(request, response);
+//                    break;
+//                case "contactUs": // Send question from in Contact Us section
+//                    request.getRequestDispatcher("/contact-us.jsp").forward(request, response);
+//                    break;
+//            }
+            
         }
     }
-
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

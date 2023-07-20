@@ -67,12 +67,12 @@ public class CartController extends HttpServlet {
                     // specific handle for quantity from produtc_details
                     String quant = request.getParameter("quantity");
                     int addNumber;
-                    if(quant == null) { // add service sent from catergory
+                    if (quant == null) { // add service sent from catergory
                         addNumber = 1;
                     } else {
                         addNumber = Integer.valueOf(quant);
                     }
-                    
+
                     int quantity = 0;
                     // Get quantity of product if it already in cart
                     if (cart.get(productID) != null) {
@@ -81,11 +81,33 @@ public class CartController extends HttpServlet {
                     cart.put(productID, quantity + addNumber);
                     response.sendRedirect("category");
                     break;
-                case "remove":
+                case "remove": {
                     int pID = Integer.valueOf(request.getParameter("id"));
                     cart.remove(pID);
                     response.sendRedirect("cart?service=displayAll");
-                    break;
+                }
+                break;
+
+                case "plusItem": { // handle logic when user clicks + icon on cart items
+                    int pID = Integer.valueOf(request.getParameter("id"));
+                    // get old quantity
+                    int oldQuantity = cart.get(pID);
+                    cart.put(pID, oldQuantity + 1);
+                    response.sendRedirect("cart?service=displayAll");
+                }
+                break;
+
+                case "minusItem": { // handle logic when user clicks - icon on cart items
+                    int pID = Integer.valueOf(request.getParameter("id"));
+                    // get old quantity
+                    int oldQuantity = cart.get(pID);
+                    if (oldQuantity > 1) {
+                        cart.put(pID, oldQuantity - 1);
+                    }
+                    response.sendRedirect("cart?service=displayAll");
+                }
+                break;
+
                 case "update": // update the cart (quantity)
                     int pId = Integer.valueOf(request.getParameter("pId"));
                     int quan = Integer.valueOf((request.getParameter("quantity")));

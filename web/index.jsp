@@ -92,8 +92,7 @@
                   <ul class="rd-navbar-nav">
                     <li class="rd-nav-item active"><a class="rd-nav-link" href="trang-chu">Home</a>
                     </li>
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="category">Category</a>
-                    </li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="category">Category</a></li>
                     <li class="rd-nav-item"><a class="rd-nav-link" href="about.jsp">About</a>
                     </li>                    
                     <li class="rd-nav-item"><a class="rd-nav-link" href="contact-us.jsp">Contact Us</a>
