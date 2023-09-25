@@ -110,6 +110,11 @@ public class OrderDetailDAO extends DBConnect {
         return o;
     }
 
+    /**
+     * Delete order_detail from DB
+     * @param oID orderID of orders want to delete
+     * @return number of records deleted from the DB
+     */
     public int deleteOrderDetail(int oID) {
         String sql = "DELETE FROM [order_details]\n"
                 + "      WHERE order_id = ?;";
@@ -142,13 +147,13 @@ public class OrderDetailDAO extends DBConnect {
         int n = 0;
         try {
             PreparedStatement pre = connect.prepareStatement(sql);
-            
+
             pre.setInt(1, o.getUserID());
             pre.setInt(2, o.getOrderStatus());
             pre.setString(3, o.getOrderDate());
             pre.setDouble(4, o.getTotal());
             pre.setInt(5, o.getOrderID());
-            
+
             n = pre.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(OrderDetailDAO.class.getName()).log(Level.SEVERE, null, ex);

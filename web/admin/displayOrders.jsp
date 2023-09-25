@@ -32,11 +32,11 @@
             </tr>
             <% for(OrderDetail o : orders) { %>
             <tr>
-                <td><%= o.getOrderID() %></td>
+                <td><a href="AdminOrder?service=orderDetails&id=<%= o.getOrderID() %>"><%= o.getOrderID() %></a></td>
                 <td><%= o.getUserID()%></td>
-                <td><%= o.getOrderStatus() %></td>
+                <td><%= o.getOrderStatus() == 1 ? "Pending" : "Completed" %></td>
                 <td><%= o.getOrderDate() %></td>
-                <td><%= o.getTotal() %></td>
+                <td> $<%= o.getTotal() %> </td>
                 <td><a href="AdminOrder?service=delete&oID=<%= o.getOrderID() %>">Delete</a></td>
                 <td><a href="AdminOrder?service=update&oID=<%= o.getOrderID() %>">Update order info</a></td>
             </tr>

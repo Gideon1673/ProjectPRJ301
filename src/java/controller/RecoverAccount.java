@@ -31,6 +31,8 @@ import entity.User;
 import java.time.LocalDateTime;
 
 /**
+ * Handle logic for forgot-password functionality. Server will use email address
+ * haquangthangvnn@gmail.com for sending the email
  *
  * @author DTS
  */
@@ -84,12 +86,13 @@ public class RecoverAccount extends HttpServlet {
                         }
                         return;
                     }
+
                 case "resetPassword": // logic when user click on reset password url sent to email
                     String token = request.getParameter("token");
                     if (uService.checkValidToken(token)) {
                         if (request.getParameter("submit") != null) { // user submit reset form --> change user password
                             String password = request.getParameter("password");
-                            
+
                             uService.changeUserPassword(password, token);
                             response.sendRedirect("trang-chu");
                         } else { // navigate user to reset password form

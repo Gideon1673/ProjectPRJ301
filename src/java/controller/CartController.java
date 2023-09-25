@@ -4,6 +4,7 @@
  */
 package controller;
 
+import entity.Product;
 import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,7 +15,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.Map;
 import service.OrderService;
+import service.ProductService;
 import service.UserService;
 
 /**
@@ -41,8 +44,10 @@ public class CartController extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String service = request.getParameter("service");
             HttpSession session = request.getSession();
+
             OrderService orderService = new OrderService();
             UserService userService = new UserService();
+            ProductService pService = new ProductService();
 
             // Get cart K-V == ProductID - Quantity
             HashMap<Integer, Integer> cart = (HashMap<Integer, Integer>) session.getAttribute("cart");
@@ -62,25 +67,45 @@ public class CartController extends HttpServlet {
                     request.setAttribute("activePage", "cart");
                     request.getRequestDispatcher("/cart.jsp").forward(request, response);
                     break;
-                case "add": // add item to cart
+
+                // add item to cart. It will also check for the available quantity of product, if 
+                // the amount we add to the cart exceed the available quantity, the max number will 
+                // be the available quantity.
+                case "add": {
+                    // get item we want to add to the cart
                     int productID = Integer.valueOf(request.getParameter("id"));
+                    Product product = pService.getProductByID(productID);
+                    // Step 1: Get the number of item want to add
                     // specific handle for quantity from produtc_details
                     String quant = request.getParameter("quantity");
-                    int addNumber;
+                    int addNumber; // number of item added
                     if (quant == null) { // add service sent from catergory
                         addNumber = 1;
                     } else {
                         addNumber = Integer.valueOf(quant);
                     }
 
+                    // step 2: Get the number of item of pID already in the cart (if exist)
                     int quantity = 0;
                     // Get quantity of product if it already in cart
                     if (cart.get(productID) != null) {
                         quantity = cart.get(productID);
                     }
-                    cart.put(productID, quantity + addNumber);
+
+                    // Step 3: item alrealy in cart + item want to add
+                    // checking for available number of item
+                    int availableQuant = product.getQuantity();
+                    // if the number of item we want to add exceed the available amount
+                    if (quantity + addNumber > availableQuant) { // we set the amount to in cart to max = available item)
+                        cart.put(productID, availableQuant);
+                    } else {
+                        cart.put(productID, quantity + addNumber);
+                    }
+
                     response.sendRedirect("category");
-                    break;
+                }
+                break;
+
                 case "remove": {
                     int pID = Integer.valueOf(request.getParameter("id"));
                     cart.remove(pID);
@@ -90,9 +115,14 @@ public class CartController extends HttpServlet {
 
                 case "plusItem": { // handle logic when user clicks + icon on cart items
                     int pID = Integer.valueOf(request.getParameter("id"));
+                    Product product = pService.getProductByID(pID);
                     // get old quantity
                     int oldQuantity = cart.get(pID);
-                    cart.put(pID, oldQuantity + 1);
+                    // user can only increase number of item when it's not exceed the available items
+                    if (oldQuantity < product.getQuantity()) {
+                        cart.put(pID, oldQuantity + 1);
+                    }
+
                     response.sendRedirect("cart?service=displayAll");
                 }
                 break;
@@ -126,11 +156,24 @@ public class CartController extends HttpServlet {
                     }
                     // Get user object that are currently logged in
                     User user = userService.getUserByUsername((String) session.getAttribute("username"));
+
+                    // ------- DEBUG ---------
+                    printAllCarts(cart);
+                    // -----------------------
                     // User do the checkout
                     orderService.checkout(cart, user);
                     response.sendRedirect("category?service=listAll");
                     break;
             }
+        }
+    }
+
+    /**
+     * FOR DEBUG ONLY
+     */
+    private void printAllCarts(HashMap<Integer, Integer> cart) {
+        for (Map.Entry<Integer, Integer> cartItem : cart.entrySet()) {
+            System.out.println("ProductID - Quantity: " + cartItem.getKey() + " - " + cartItem.getValue());
         }
     }
 

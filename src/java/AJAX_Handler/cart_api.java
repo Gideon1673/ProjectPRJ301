@@ -2,21 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package AJAX_Handler;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.Properties;
+import service.ProductService;
 
 /**
  *
  * @author DTS
  */
-public class Homepage extends HttpServlet {
+@WebServlet(name = "cart_api", urlPatterns = {"/cart_api"})
+public class cart_api extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,25 +31,16 @@ public class Homepage extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/plain;charset=UTF-8");
+        ProductService pService = new ProductService();
+        
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-//            String service = request.getParameter("service");
-//            if(service == null) {
-//                service = "homepage";
-//            }
-//            switch(service) {
-//                case "homepage":
-                    request.getRequestDispatcher("/index.jsp").forward(request, response);
-//                    break;
-//                case "contactUs": // Send question from in Contact Us section
-//                    request.getRequestDispatcher("/contact-us.jsp").forward(request, response);
-//                    break;
-//            }
-            
+            String productID = request.getParameter("itemId");
+            out.println(pService.getAvailableQuantity(Integer.valueOf(productID)));
         }
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

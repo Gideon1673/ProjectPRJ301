@@ -129,8 +129,8 @@
   <label class="col-md-4 control-label" for="status">STATUS</label>
   <div class="col-md-4">
     <select id="status" name="status" class="form-control">
-      <option value="1">True</option>
-      <option value="0">False</option>
+      <option value="true">True</option>
+      <option value="false">False</option>
     </select>
   </div>
 </div>

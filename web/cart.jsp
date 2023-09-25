@@ -129,20 +129,25 @@ footer a {
                                 <% } %>
                                 
                                 <td>
-                                    
-                                    <!--<input name="quantity" class="form-control" type="text" value="<%= quantity %>" />-->
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-3 cart-item" data-item-id="<%= productID %>">
                                         <div class="input-group-prepend">
-                                            <a style="color: white" class="quantity-left-minus btn btn-danger btn-number"  data-type="minus" data-field="" href="cart?service=minusItem&id=<%= productID %>">
+                                            <!-- <a style="color: white" class="minus-btn btn btn-danger btn-number"  data-type="minus" data-field="" href="cart?service=minusItem&id=<%= productID %>">
                                                 <i class="fa fa-minus"></i>
-                                            </a>
+                                            </a> -->
+
+                                            <button class="minus-btn btn btn-danger btn-number"  data-type="minus" data-field="">
+                                                <i class="fa fa-minus"></i>
+                                            </button>
                                         </div>
-                                        <!--<input type="hidden" name="pId" value="<%= productID %>" />-->
-                                        <input type="number" class="form-control" name="quantity" min="1" max="100" value="<%= quantity %>" readonly>
+                                        <input type="number" class="form-control quantity" name="quantity" min="1" max="100" value="<%= quantity %>" readonly>
                                         <div class="input-group-append">
-                                            <a style="color: white" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="" href="cart?service=plusItem&id=<%= productID %>">
+                                            <!-- <a style="color: white" class="plus-btn btn btn-success btn-number" data-type="plus" data-field="" href="cart?service=plusItem&id=<%= productID %>">
                                                 <i class="fa fa-plus"></i>
-                                            </a>
+                                            </a> -->
+
+                                            <button class="plus-btn btn btn-success btn-number" data-type="plus" data-field="">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </td>
@@ -204,8 +209,84 @@ footer a {
 
 <!-- Footer -->
 <jsp:include page="commons/footer.jsp" />
-<script type="text/javascript">
-    
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Attach click event handler to the plus button
+        $(".plus-btn").on("click", function () {
+            var itemDiv = $(this).closest(".cart-item");
+            var itemId = itemDiv.data("item-id");
+
+            // Get the current quantity displayed in the cart for this item
+            var currentQuantity = parseInt(itemDiv.find(".quantity").val().trim());
+
+            // Make an AJAX request to the server to fetch the available quantity
+            $.ajax({
+                url: "cart_api", // Server endpoint to fetch the available quantity
+                type: "GET",
+                data: { itemId: itemId }, // Send the item ID as a parameter in the request
+                success: function (availableQuantity) {
+                    // This function is called when the AJAX request is successful
+                    // availableQuantity contains the response from the server, which is the available quantity for the item
+
+                    // Check if the current quantity is less than the available quantity
+                    if (!isNaN(currentQuantity) && currentQuantity < availableQuantity) {
+                        // If the current quantity is less than available, update the displayed quantity by increasing it by 1
+                        itemDiv.find(".quantity").val(currentQuantity + 1);
+                    updateSessionDB(itemId, currentQuantity + 1);
+                    } else {
+                        // If the current quantity is equal to or exceeds the available quantity,
+                        // you can handle this case here, for example, displaying an error message.
+                        // Depending on your use case, you may take different actions, like disabling the plus button or showing a warning.
+                    }
+                },
+                error: function () {
+                    // This function is called if the AJAX request encounters an error
+                    // You can handle the error response here, such as showing an error message to the user.
+                }
+            });
+        });
+
+        // Attach click event handler to the minus button
+        $(".minus-btn").on("click", function () {
+            var itemDiv = $(this).closest(".cart-item");
+            var itemId = itemDiv.data("item-id");
+
+            // Get the current quantity displayed in the cart for this item
+            var currentQuantity = parseInt(itemDiv.find(".quantity").val().trim());
+            // Check if the current quantity is greater than 1 (minimum allowed value)
+            if (!isNaN(currentQuantity) && currentQuantity > 1) {
+                // If the current quantity is greater than 1, update the displayed quantity by decreasing it by 1
+                itemDiv.find(".quantity").val(currentQuantity - 1);
+                updateSessionDB(itemId, currentQuantity - 1);
+            } else {
+                // If the current quantity is already 1 or less, you may handle this case if needed.
+                // For example, showing an error message or disabling the minus button.
+            }
+        });
+    });
+
+    function updateSessionDB(productID, quantity) {
+        // Make an AJAX request to update the server session with the new quantity
+        $.ajax({
+            url: "/updateQuantity", // Server endpoint to update the quantity in the session
+            type: "POST",
+            data: { itemId: productID, quantity: quantity }, // Send the item ID and updated quantity as parameters
+            success: function () {
+                // This function is called when the AJAX request is successful
+                // You can update any UI elements or perform other actions after successfully updating the session.
+                // For example, you can update the displayed quantity in the cart to the new value.
+            },
+            error: function () {
+                // This function is called if the AJAX request encounters an error
+                // You can handle the error response here, such as showing an error message to the user.
+            }
+        });
+    }
+
 </script>
+
 </body>
 </html>

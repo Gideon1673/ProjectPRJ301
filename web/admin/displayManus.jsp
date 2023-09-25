@@ -38,7 +38,7 @@
                 <td><%= m.getPhone() %></td>
                 <td><%= m.getEmail() %></td>
                 <td><%= m.getAddress() %></td>
-                <td><a href="#">Update</a></td>
+                <!--<td><a href="#">Update</a></td>-->
             </tr>
             <% } %>
 

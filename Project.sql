@@ -57,7 +57,8 @@ ALTER TABLE [User] ADD CONSTRAINT pk_userID PRIMARY KEY(id);
 
 CREATE TABLE PasswordReset (
 	email VARCHAR(50) NOT NULL,
-	token CHAR(20) NOT NULL
+	token VARCHAR(30) NOT NULL,
+	expireDate DATETIME
 );
 
 DROP TABLE [User];
@@ -141,6 +142,7 @@ SELECT * FROM order_details;
 SELECT * FROM order_items;
 SELECT * FROM PasswordReset;
 SELECT salt FROM [User] WHERE email LIKE 'haquangthangvnn@gmail.com';
+SELECT quantity FROM Product WHERE product_id = 1;
 
 
 --SELECT order_id, user_id, order_status, order_date, total FROM order_details
@@ -217,3 +219,5 @@ FROM [User] a JOIN UserRole b ON a.id = b.user_id;
 
 ALTER TABLE Product ADD CONSTRAINT default_img_path DEFAULT 'https://dummyimage.com/600x400/55595c/fff' FOR img_path;
 ALTER TABLE Product ADD CONSTRAINT default_status DEFAULT 1 FOR status;
+
+SELECT * FROM order_items WHERE order_id = 4;

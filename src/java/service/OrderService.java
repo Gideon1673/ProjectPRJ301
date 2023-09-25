@@ -28,6 +28,11 @@ public class OrderService {
 
     private ProductService pService = new ProductService();
 
+    /**
+     * Do checkout for cart (when user clicks on CHECKOUT button)
+     * @param cart cart of user
+     * @param user user that is currently logged in
+     */
     public void checkout(HashMap<Integer, Integer> cart, User user) {
         if (cart.isEmpty()) { // If cart is empty
             return;
@@ -45,7 +50,8 @@ public class OrderService {
 //        System.out.println(order);
         orderDao.addOrder(order);
 
-        // for each item in the cart, we subtract the quantity from DB and add order_items to DB
+        // for each item in the cart, we subtract the quantity from DB and add order_items 
+        // to DB (except items have quantity = 0, because they're out of order)
         for (Map.Entry<Integer, Integer> cartItem : cart.entrySet()) {
             buyItem(order.getOrderID(), cartItem.getKey(), cartItem.getValue());
         }
@@ -70,10 +76,11 @@ public class OrderService {
 
     /**
      * Buy an item = subtract the amount of item from DB, add record to
-     * order_items table
+     * order_items table (except items have quantity = 0)
      *
-     * @param prodID
-     * @param quantity
+     * @param oID order_id this order_item belongs to
+     * @param prodID product_id of this item
+     * @param quantity number of item user bought
      */
     private void buyItem(int oID, int prodID, int quantity) {
         // Get product
@@ -93,8 +100,29 @@ public class OrderService {
         pService.updateProduct(p);
     }
 
+    /**
+     * Get all OrderDetail in the DB
+     * @return 
+     */
     public Vector<OrderDetail> getAllOrders() {
         return orderDao.getAllOrders();
+    }
+    
+    /**
+     * Get all order_item in the DB
+     * @return 
+     */
+    public Vector<OrderItem> getAllOrderItems() {
+        return orItemDao.getAllOrderItems();
+    }
+    
+    /**
+     * Get all order_items corresponding to oID
+     * @param oID
+     * @return 
+     */
+    public Vector<OrderItem> getAllItemsByoID(int oID) {
+        return orItemDao.getOItemByoID(oID);
     }
 
     public OrderDetail getOrderByID(int oID) {

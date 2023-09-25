@@ -17,8 +17,8 @@
     <body>
         <!--Retype password will be handled using JS, I won't use servlet-->
         <form action="recovery?service=resetPassword" method="POST">
-            <p>Enter your password: <input type="text" required name="password"></p>
-            <p>Retype your password: <input type="text" required name="retype"></p>
+            <p>Enter your password: <input type="password" required name="password"></p>
+            <p>Retype your password: <input type="password" required name="retype"></p>
             <input type="hidden" name="token" value="<%= token %>">
             <input type="submit" name="submit">
         </form>

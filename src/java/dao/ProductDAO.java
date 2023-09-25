@@ -52,6 +52,40 @@ public class ProductDAO extends DBConnect {
 
         return products;
     }
+    
+    /**
+     * Get all active products (products have status = 1)
+     * @return 
+     */
+    public Vector<Product> getActiveProducts() {
+        String sqlStatement = "SELECT * FROM Product WHERE status = 1;";
+        Vector<Product> products = new Vector<>();
+
+        ResultSet rs = getData(sqlStatement);
+        try {
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String pName = rs.getString(2);
+                int manuID = rs.getInt(3);
+                int modelYear = rs.getInt(4);
+                double price = rs.getInt(5);
+                int quantity = rs.getInt(6);
+                int categoryID = rs.getInt(7);
+                boolean status = rs.getBoolean(8);
+                int discountID = rs.getInt(9);
+                String desc = rs.getString(10);
+                String img_path = rs.getString(11);
+
+                Product prod = new Product(id, pName, manuID, modelYear, price, quantity, categoryID, status, discountID, desc, img_path);
+                products.add(prod);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getCause());
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return products;
+    }
 
     public Vector<Product> getProductsByManu(int manufacturerID) {
         String sqlStatement = "SELECT * FROM Product WHERE [manufacturer_id] = " + manufacturerID + ";";
@@ -209,6 +243,29 @@ public class ProductDAO extends DBConnect {
         }
 
         return updatedRows;
+    }
+    
+    /**
+     * Get quantity of a product by productID
+     * @param pID
+     * @return available quantity. or -1 if there is no product with pID
+     */
+    public int getProductQuantity(int pID) {
+        int quantity = -1;
+        String sqlStatement = "SELECT quantity FROM Product WHERE product_id = ?;";
+        PreparedStatement pre;
+        try {
+            pre = connect.prepareStatement(sqlStatement);
+            pre.setInt(1, pID);
+            ResultSet rs = pre.executeQuery();
+            while(rs.next()) {
+                quantity = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return quantity;
     }
     
     /**

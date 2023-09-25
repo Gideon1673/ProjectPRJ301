@@ -56,8 +56,9 @@ https://www.baeldung.com/java-password-hashing
 20/7/2023
 - Update xong nút + - trong cart để tăng/giảm số lượng sản phẩm --> Xong
 - Yêu cầu cải tiến: Sử dụng JS AJAX hoặc Fetch API hoặc JQuery để send request đến Servlet, lấy response về để live update giỏ hàng (không cần phải reload như hiện tại)
-- Update trang product chỉ show sản phẩm có status = 1
+- Update trang product chỉ show sản phẩm có status = 1 --> xong
 - Update admin (chủ yếu thêm DAO  CRUD, vì hiện tại đang ít quá)
+- Xử lí TH người dùng add số lượng vượt số lượng có trong DB --> Đã tạm thời xử lí (chưa perfect) bằng cách xử lí case: "add" trong CartController, với những mặt hàng có số lượng vượt available thì số lượng tối đa có thể mua = số lượng available. Vì vậy với những mặt hàng hết hàng (quantity = 0) thì trong giỏ hàng sẽ có sản phẩm quantity = 0.
 
 
 ------------- EXP ----------------

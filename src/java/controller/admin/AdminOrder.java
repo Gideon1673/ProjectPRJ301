@@ -5,6 +5,7 @@
 package controller.admin;
 
 import entity.OrderDetail;
+import entity.OrderItem;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,6 +13,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.Vector;
 import service.OrderService;
 
 /**
@@ -66,11 +68,28 @@ public class AdminOrder extends HttpServlet {
                         oService.updateOrderDetails(orD);
                         response.sendRedirect("AdminOrder?service=displayAll");
                     } else {
-                        
+
                         request.setAttribute("orderDetails", orD);
                         request.getRequestDispatcher("/admin/updateOrder.jsp").forward(request, response);
                         return;
                     }
+                    break;
+                case "displayOrderItems": {
+                    Vector<OrderItem> oItems = oService.getAllOrderItems();
+                    request.setAttribute("orderItems", oItems);
+                    request.getRequestDispatcher("/admin/displayOrderItems.jsp").forward(request, response);
+                }
+
+                break;
+
+                case "orderDetails": { // display all order_items corresponding to an orderID
+                    int orID = Integer.valueOf(request.getParameter("id"));
+                    Vector<OrderItem> oItems = oService.getAllItemsByoID(orID);
+                    request.setAttribute("orderItems", oItems);
+                    request.getRequestDispatcher("/admin/displayOrderItems.jsp").forward(request, response);
+                }
+
+                break;
             }
         }
     }

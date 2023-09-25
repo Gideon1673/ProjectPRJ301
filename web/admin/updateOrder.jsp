@@ -16,16 +16,41 @@
         <title>Update Order Information</title>
     </head>
     <body>
+        <table border="1">
+            <caption>Order details</caption>
+            <tr>
+                <th>OrderID</th>
+                <th>UserID</th>
+                <th>Order status</th>
+                <th>Order date</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <td><a href="AdminOrder?service=orderDetails&id=<%= o.getOrderID() %>"><%= o.getOrderID() %></a></td>
+                <td><%= o.getUserID()%></td>
+                <td><%= o.getOrderStatus() == 1 ? "Pending" : "Completed" %></td>
+                <td><%= o.getOrderDate() %></td>
+                <td> $<%= o.getTotal() %> </td>
+            </tr>
+        </table>
+            
         <form class="form-horizontal" action="AdminOrder?service=update" method="POST">
             <fieldset>
-                <input type="hidden" name="oID" value="<%= o.getOrderID() %>"/>
-
-                <div class="form-group">
+                <input type="hidden" name="oID" value="<%= o.getOrderID() %>" readonly/>
+                <input type="hidden" name="uID" value="<%= o.getUserID() %>" readonly>
+                
+<!--                <div class="form-group">
                     <label class="col-md-4 control-label" for="oStatus">Order status</label>  
+                    
                     <div class="col-md-4">
                         <input id="oStatus" name="oStatus" placeholder="Order status" class="form-control input-md" required type="number" value="<%= o.getOrderStatus() %>">
                     </div>
-                </div>
+                </div>-->
+                    
+                    <select id="oStatus" name="oStatus" >
+                        <option value="1" <%= o.getOrderStatus() == 1 ? "selected" : "" %>>Pending</option>
+                        <option value="2" <%= o.getOrderStatus() == 2 ? "selected" : "" %>>Completed</option>
+                    </select>
                 <input type="submit" value="submit" name="submit">
                 <input type="reset">
             </fieldset>

@@ -105,9 +105,10 @@ public class AdminProduct extends HttpServlet {
                         int disID = Integer.valueOf(request.getParameter("discount_id"));
                         boolean status = Boolean.valueOf(request.getParameter("status"));
                         String img_path = request.getParameter("img_path");
-
+                        System.out.println("STATUS: " + status);
+                        System.out.println("REQUEST PARAM: " + request.getParameter("status"));
                         Product p = new Product(pID, productName, manuID, year, price, quantity, catID, status, disID, desc, img_path);
-
+                        System.out.println(p);
                         pService.updateProduct(p);
 
                         response.sendRedirect("AdminProduct?service=displayAll");

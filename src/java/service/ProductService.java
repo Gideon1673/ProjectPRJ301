@@ -20,8 +20,20 @@ public class ProductService {
     private static final ProductDAO productDao = new ProductDAO();
     private static final DiscountDAO discountDao = new DiscountDAO();
 
+    /**
+     * Get all products
+     * @return 
+     */
     public Vector<Product> getAllProducts() {
         return productDao.getAllProducts();
+    }
+    
+    /**
+     * Get all active products (products have status = 1)
+     * @return 
+     */
+    public Vector<Product> getAllActiveProducts() {
+        return productDao.getActiveProducts();
     }
 
     public Vector<Product> getProductsByManu(int manufacturerID) {
@@ -72,6 +84,9 @@ public class ProductService {
         return n;
     }
     
+    public int getAvailableQuantity(int pID) {
+        return productDao.getProductQuantity(pID);
+    }
 
 //    public Vector<Product> getProductsOnPage(int pageNumber) {
 //        

@@ -8,6 +8,7 @@ import entity.OrderItem;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,6 +17,48 @@ import java.util.logging.Logger;
  * @author DTS
  */
 public class OrderItemDAO extends DBConnect {
+
+    public Vector<OrderItem> getAllOrderItems() {
+        String sql = "SELECT * FROM order_items;";
+        ResultSet rs = getData(sql);
+        Vector<OrderItem> orderItems = new Vector<>();
+        try {
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                int oID = rs.getInt(2);
+                int pID = rs.getInt(3);
+                int quantity = rs.getInt(4);
+
+                OrderItem oI = new OrderItem(id, oID, pID, quantity);
+                orderItems.add(oI);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderItemDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return orderItems;
+    }
+
+    public Vector<OrderItem> getOItemByoID(int oID) {
+        String sql = "SELECT * FROM order_items WHERE order_id = ?;";
+        Vector<OrderItem> orderItems = new Vector<>();
+        try {
+            PreparedStatement pre = connect.prepareStatement(sql);
+            pre.setInt(1, oID);
+            ResultSet rs = pre.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                int pID = rs.getInt(3);
+                int quantity = rs.getInt(4);
+
+                OrderItem oI = new OrderItem(id, oID, pID, quantity);
+                orderItems.add(oI);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderItemDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return orderItems;
+    }
 
     /**
      *

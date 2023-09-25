@@ -48,7 +48,7 @@ public class ProductController extends HttpServlet {
 
             switch(service) {
                 case "listAll": // default: display all products 
-                    request.setAttribute("products", productService.getAllProducts());
+                    request.setAttribute("products", productService.getAllActiveProducts());
                     request.setAttribute("activePage", "categories"); // for header.jsp determine css rule
                     request.getRequestDispatcher("/category.jsp").forward(request, response);
                     break;

@@ -29,6 +29,8 @@ public class UserService {
 
     /**
      *
+     * @param username
+     * @param password
      * @return true if username and password is correct
      */
     public boolean userLogin(String username, String password) {
@@ -43,7 +45,6 @@ public class UserService {
 
 //            System.out.println("hashed1: " + Arrays.toString(hashedPassword));
 //            System.out.println("hashed2: " + Arrays.toString(realHashed));
-
             return Arrays.equals(realHashed, hashedPassword);
         }
     }
@@ -124,13 +125,14 @@ public class UserService {
     public User getUserByUsername(String username) {
         return userDao.getUserByUsername(username);
     }
-    
+
     public User getUserByEmail(String email) {
         return userDao.getUserByEmail(email);
     }
 
     /**
      * Get user role by username
+     *
      * @param username
      * @return role name
      */
@@ -138,7 +140,7 @@ public class UserService {
 //        System.out.println("username: " + username);
         return userRoles[userDao.getUserRole(username) - 1]; // subtract 1 becasue roleID in DB begins from 1
     }
-    
+
     public int getUserRoleID(String username) {
         return userDao.getUserRole(username);
     }
@@ -160,24 +162,25 @@ public class UserService {
     public User getUserByID(int uID) {
         return userDao.getUserByID(uID);
     }
-    
+
     public void addPasswordReset(PasswordReset pwdR) {
         passDao.addPasswordReset(pwdR);
     }
-    
+
     /**
      * Check whether this token belongs to this email in DB, and is in time
+     *
      * @param token
-     * @return 
+     * @return
      */
     public boolean checkValidToken(String token) {
         return passDao.checkValidToken(token);
     }
-    
+
     /**
-     * 
+     *
      * @param newPassword
-     * @param token 
+     * @param token
      */
     public void changeUserPassword(String newPassword, String token) {
         String email = passDao.getEmailByToken(token);
