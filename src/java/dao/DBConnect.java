@@ -33,21 +33,30 @@ public class DBConnect {
             Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     /**
      * Execute SQL Statement and get back the data
+     *
      * @param sqlStatement SQL Statement to be executed
      * @return ResultSet object contains data
      */
     public ResultSet getData(String sqlStatement) {
         ResultSet rs = null;
-        Statement statement;
-        
+        Statement statement = null;
+
         try {
             statement = connect.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             rs = statement.executeQuery(sqlStatement);
         } catch (SQLException ex) {
             Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return rs;
     }

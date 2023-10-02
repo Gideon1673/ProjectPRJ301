@@ -4,6 +4,8 @@
  */
 package entity;
 
+import java.util.Arrays;
+
 /**
  *
  * @author DTS
@@ -78,7 +80,7 @@ public class User {
     }
 
     public byte[] getPasswordHashed() {
-        return passwordHashed;
+        return Arrays.copyOf(passwordHashed, passwordHashed.length);
     }
 
     public void setPasswordHashed(byte[] passwordHashed) {

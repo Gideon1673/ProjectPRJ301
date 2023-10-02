@@ -115,8 +115,8 @@ public class OrderItemDAO extends DBConnect {
         String sql = "DELETE FROM order_items\n"
                 + "      WHERE order_id = ?;";
         int n = 0;
-        try {
-            PreparedStatement pre = connect.prepareStatement(sql);
+
+        try ( PreparedStatement pre = connect.prepareStatement(sql)) {
             pre.setInt(1, orderID);
             n = pre.executeUpdate();
         } catch (SQLException ex) {
