@@ -25,38 +25,54 @@ public class DBConnect {
 
     protected Connection connect = null;
 
+    private static final String DB_URL = "jdbc:sqlserver://localhost:1433;databaseName=ProjectPRJ301";
+    private static final String DB_USERNAME = "sa";
+    private static final String DB_PASSWORD = "123456";
+    private static final String DB_DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+
+//    public DBConnect() {
+//        Properties prop = new Properties();
+//        InputStream input = null;
+//
+//        try {
+//            System.out.println(System.getProperty("user.dir"));
+//            input = new FileInputStream("C:\\Users\\DTS\\Documents\\NetBeansProjects\\Project-Final\\web\\config\\config.properties");
+//
+//            // load properties file contains username and password
+//            prop.load(input);
+//
+//            String dbURL = prop.getProperty("database.url");
+//            String dbDriver = prop.getProperty("database.driver");
+//            String dbUsername = prop.getProperty("database.username");
+//            String dbPassword = prop.getProperty("database.password");
+//
+//            Class.forName(dbDriver);
+//            connect = DriverManager.getConnection(dbURL, dbUsername, dbPassword);
+//
+//            System.out.println("Connected successfully");
+//        } catch (ClassNotFoundException | SQLException | FileNotFoundException ex) {
+//            System.out.println(ex.getMessage());
+//        } catch (IOException ex) {
+//            System.out.println(ex.getMessage());
+//        } finally {
+//            if (input != null) {
+//                try {
+//                    input.close();
+//                } catch (IOException ex) {
+//                    Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        }
+//    }
     public DBConnect() {
-        Properties prop = new Properties();
-        InputStream input = null;
 
         try {
-            System.out.println(System.getProperty("user.dir"));
-            input = new FileInputStream("C:\\Users\\DTS\\Documents\\NetBeansProjects\\Project-Final\\web\\config\\config.properties");
-
-            // load properties file contains username and password
-            prop.load(input);
-            
-            String dbURL = prop.getProperty("database.url");
-            String dbDriver = prop.getProperty("database.driver");
-            String dbUsername = prop.getProperty("database.username");
-            String dbPassword = prop.getProperty("database.password");
-
-            Class.forName(dbDriver);
-            connect = DriverManager.getConnection(dbURL, dbUsername, dbPassword);            
+            Class.forName(DB_DRIVER);
+            connect = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
 
             System.out.println("Connected successfully");
-        } catch (ClassNotFoundException | SQLException | FileNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             System.out.println(ex.getMessage());
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
         }
     }
 

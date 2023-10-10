@@ -6,6 +6,7 @@ package service;
 
 import dao.PasswordResetDAO;
 import dao.UserDAO;
+import dao.UserRoleDAO;
 import entity.PasswordReset;
 import entity.User;
 import java.nio.charset.StandardCharsets;
@@ -26,6 +27,7 @@ public class UserService {
     private static final UserDAO userDao = new UserDAO();
     private static final PasswordResetDAO passDao = new PasswordResetDAO();
     private static String[] userRoles = {"user", "admin"};
+    private static final UserRoleDAO userRoleDao = new UserRoleDAO();
 
     /**
      *
@@ -113,8 +115,10 @@ public class UserService {
         byte[] hashedPassword = hashingPassword(password, salt);
         System.out.println("Password size: " + hashedPassword.length);
 
-        User newUser = new User(userDao.getLastID() + 1, null, username, email, null, salt, hashedPassword, null);
+        int lastId = userDao.getLastID();
+        User newUser = new User(lastId + 1, null, username, email, null, salt, hashedPassword, null);
         userDao.addUser(newUser);
+        userRoleDao.addUserRole(newUser, 1);
         return true;
     }
 
