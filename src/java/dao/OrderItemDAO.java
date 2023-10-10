@@ -41,8 +41,8 @@ public class OrderItemDAO extends DBConnect {
     public Vector<OrderItem> getOItemByoID(int oID) {
         String sql = "SELECT * FROM order_items WHERE order_id = ?;";
         Vector<OrderItem> orderItems = new Vector<>();
-        try {
-            PreparedStatement pre = connect.prepareStatement(sql);
+        try ( PreparedStatement pre = connect.prepareStatement(sql)) {
+
             pre.setInt(1, oID);
             ResultSet rs = pre.executeQuery();
 

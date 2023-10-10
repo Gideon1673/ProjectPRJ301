@@ -1,10 +1,15 @@
 package dao;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,18 +24,39 @@ import java.util.logging.Logger;
 public class DBConnect {
 
     protected Connection connect = null;
-    private static final String DB_URL = "jdbc:sqlserver://localhost:1433;databaseName=ProjectPRJ301";
-    private static final String DB_DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    private static final String DB_USR = "sa";
-    private static final String DB_PWD = "123456";
 
     public DBConnect() {
+        Properties prop = new Properties();
+        InputStream input = null;
+
         try {
-            Class.forName(DB_DRIVER);
-            connect = DriverManager.getConnection(DB_URL, DB_USR, DB_PWD);
+            System.out.println(System.getProperty("user.dir"));
+            input = new FileInputStream("C:\\Users\\DTS\\Documents\\NetBeansProjects\\Project-Final\\web\\config\\config.properties");
+
+            // load properties file contains username and password
+            prop.load(input);
+            
+            String dbURL = prop.getProperty("database.url");
+            String dbDriver = prop.getProperty("database.driver");
+            String dbUsername = prop.getProperty("database.username");
+            String dbPassword = prop.getProperty("database.password");
+
+            Class.forName(dbDriver);
+            connect = DriverManager.getConnection(dbURL, dbUsername, dbPassword);            
+
             System.out.println("Connected successfully");
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | SQLException | FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
     }
 
@@ -49,25 +75,17 @@ public class DBConnect {
             rs = statement.executeQuery(sqlStatement);
         } catch (SQLException ex) {
             Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                if (statement != null) {
-                    statement.close();
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
         return rs;
     }
 
-    public DBConnect(String url, String username, String password) {
-        try {
-            Class.forName(DB_DRIVER);
-            connect = DriverManager.getConnection(DB_URL, DB_USR, DB_PWD);
-            System.out.println("Connected");
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//    public DBConnect(String url, String username, String password) {
+//        try {
+//            Class.forName(DB_DRIVER);
+//            connect = DriverManager.getConnection(DB_URL, DB_USR, DB_PWD);
+//            System.out.println("Connected");
+//        } catch (ClassNotFoundException | SQLException ex) {
+//            Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 }

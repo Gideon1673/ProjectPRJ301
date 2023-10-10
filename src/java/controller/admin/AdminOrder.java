@@ -49,7 +49,7 @@ public class AdminOrder extends HttpServlet {
                     request.getRequestDispatcher("/admin/displayOrders.jsp").forward(request, response);
                     break;
                 case "delete":
-                    int oID = Integer.valueOf(request.getParameter("oID"));
+                    int oID = Integer.parseInt(request.getParameter("oID"));
                     OrderDetail o = oService.getOrderByID(oID);
                     if (o == null) { // there is no order with oID
                         request.setAttribute("msg", "Error when deleting order with id " + oID + ". There is no oID in DB");
